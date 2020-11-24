@@ -39,7 +39,7 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "(id,"                +
 						"professorId,"        +
@@ -56,14 +56,14 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the MaterialReviews
+		 * by the fetched data from the associate_professormaterialtracker
 		 * instance
 		 * 
 		 * params:
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
 							  "?,"  +
@@ -81,19 +81,19 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 	public static int funcCreateMaterialsObj (classAssociate_ProfessorMaterialTracker tracker) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object MaterialReviews in MySQL.  
+		 * instance of the object associate_professormaterialtracker in MySQL.  
 		 * 
 		 * params:
-		 *  material <type:MaterialReviews> (values.MaterialReviews)
+		 *  tracker <type:classAssociate_ProfessorMaterialTracker> (values.classAssociate_ProfessorMaterialTracker)
 		 * 
 		 * return value:
-		 * 	Fields <type:MaterialReviews>
+		 * 	intResult <type:int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;
 
 		try {
-			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_studentmaterialtracker " + funcSetFields()
+			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_professormaterialtracker " + funcSetFields()
 					+ funcSetValues());
 			objPreparedStatementObject.setInt(1, tracker.funcgetId());
 			objPreparedStatementObject.setInt(2, tracker.funcgetProfessorId());

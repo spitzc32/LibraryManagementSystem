@@ -14,7 +14,7 @@ import values.classMaterials;
 *    on  CREATE and READ statements in MySQL.
 *    
 * 	  Fields gathered in this requirement is the 
-*    same as the fields fetched by values.Materials.
+*    same as the fields fetched by values.classMaterials.
 *
 * */
 
@@ -39,7 +39,7 @@ public class classMaterialsCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "(id,"                +
 						"Title,"              +
@@ -53,14 +53,14 @@ public class classMaterialsCRUD {
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the Author
+		 * by the fetched data from the Materials
 		 * instance
 		 * 
 		 * params:
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
 							  "?,"  +
@@ -81,7 +81,7 @@ public class classMaterialsCRUD {
 		 *  material <type:Materials> (values.Materials)
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

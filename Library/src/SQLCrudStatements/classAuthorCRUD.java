@@ -14,7 +14,7 @@ import values.classAuthor;
 *    on  CREATE and READ statements in MySQL.
 *    
 * 	  Fields gathered in this requirement is the 
-*    same as the fields fetched by values.Author.
+*    same as the fields fetched by values.classAuthor.
 *
 * */
 
@@ -38,7 +38,7 @@ public class classAuthorCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "(id,"          +
 						"FirstName,"    +
@@ -60,7 +60,7 @@ public class classAuthorCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
 							  "?,"  +
@@ -76,13 +76,13 @@ public class classAuthorCRUD {
 	public static int funcCreateAuthorObj (classAuthor author) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object Author in MySQL.  
+		 * instance of the object author in MySQL.  
 		 * 
 		 * params:
-		 *  Author <type:Author> (values.Author)
+		 *  author <type:Author> (values.classAuthor)
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

@@ -14,7 +14,7 @@ import values.classAssociate_MaterialSubject;
 *    
 * 	  Fields gathered in this requirement is the 
 *    same as the fields fetched by 
-*    values.Associate_ProfessorMaterialTracker.
+*    values.classAssociate_MaterialSubject.
 *
 * */
 
@@ -38,25 +38,25 @@ public class classAssociate_MaterialSubjectCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "(id,"      +
 						"MaterialId,"  +
-						"AuthorId,";
+						"SubjectId,";
 					
 		return strfields;
 	}
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the Author
+		 * by the fetched data from the classAssociate_MaterialSubject
 		 * instance
 		 * 
 		 * params:
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
 							      "?," +
@@ -67,19 +67,19 @@ public class classAssociate_MaterialSubjectCRUD {
 	public static int funcCreateSubjectObj (classAssociate_MaterialSubject author) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object Subject in MySQL.  
+		 * instance of the object associate_materialsubject in MySQL.  
 		 * 
 		 * params:
-		 *  subject <type:Subject> (values.Subject)
+		 *  author <type:classAssociate_MaterialSubject> (values.classAssociate_MaterialSubject)
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;
 
 		try {
-			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_materialauthor " + funcSetFields()
+			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_materialsubject " + funcSetFields()
 					+ funcSetValues());
 			objPreparedStatementObject.setInt(1, author.funcgetId());
 			objPreparedStatementObject.setInt(2, author.funcgetMaterialId());

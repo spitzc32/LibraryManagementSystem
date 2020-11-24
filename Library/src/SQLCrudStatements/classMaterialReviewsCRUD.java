@@ -14,7 +14,7 @@ import values.classMaterialReviews;
 *    on  CREATE and READ statements in MySQL.
 *    
 * 	  Fields gathered in this requirement is the 
-*    same as the fields fetched by values.MaterialReviews.
+*    same as the fields fetched by values.classMaterialReviews.
 *
 * */
 
@@ -37,15 +37,15 @@ public class classMaterialReviewsCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
-		String fields = "(id,"               +
+		String strfields = "(id,"               +
 						"MaterialId,"        +
 						"StudentId,"         +
 						"ProfessorId ,"      +
 						"comment,"           +
 						"timestamp";
-		return fields;
+		return strfields;
 	}
 	
 	public static  String funcSetValues() {
@@ -57,27 +57,27 @@ public class classMaterialReviewsCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
-		String fields = "VALUES(?," +
+		String strfields = "VALUES(?," +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?)";
-		return fields;
+		return strfields;
 	}
 
 	public static int funcCreateMaterialsObj (classMaterialReviews material) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object MaterialReviews in MySQL.  
+		 * instance of the object materialreviews in MySQL.  
 		 * 
 		 * params:
-		 *  material <type:MaterialReviews> (values.MaterialReviews)
+		 *  material <type:MaterialReviews> (values.classMaterialReviews)
 		 * 
 		 * return value:
-		 * 	Fields <type:MaterialReviews>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

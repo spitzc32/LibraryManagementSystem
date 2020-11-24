@@ -65,16 +65,16 @@ public class classAssociate_MaterialAuthorCRUD {
 		return strfields;
 	}
 
-	public static int funcCreateSubjectObj (classAssociate_MaterialAuthor author) {
+	public static int funcCreateAssociate_MaterialAuthorObj (classAssociate_MaterialAuthor author) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object Subject in MySQL.  
+		 * instance of the object associate_materialauthor in MySQL.  
 		 * 
 		 * params:
-		 *  subject <type:Subject> (values.Subject)
+		 *  author <type:classAssociate_MaterialAuthor> (values.classAssociate_MaterialAuthor)
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

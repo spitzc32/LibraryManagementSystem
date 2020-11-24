@@ -14,7 +14,7 @@ import values.classLibrarian;
 *    on  CREATE and READ statements in MySQL.
 *    
 * 	  Fields gathered in this requirement is the 
-*    same as the fields fetched by values.Librarian.
+*    same as the fields fetched by values.classLibrarian.
 *
 * */
 
@@ -39,7 +39,7 @@ public class classLibrarianCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "(id,"          +
 						"FirstName,"    +
@@ -66,7 +66,7 @@ public class classLibrarianCRUD {
 		 * 	none
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
 							  "?,"  +
@@ -87,13 +87,13 @@ public class classLibrarianCRUD {
 	public static int funcCreateLibrarianObj (classLibrarian librarian) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object Student in MySQL.  
+		 * instance of the object librarian in MySQL.  
 		 * 
 		 * params:
-		 *  student <type:Student> (values.Librarian)
+		 *  librarian <type:Librarian> (values.classLibrarian)
 		 * 
 		 * return value:
-		 * 	Fields <type:String>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

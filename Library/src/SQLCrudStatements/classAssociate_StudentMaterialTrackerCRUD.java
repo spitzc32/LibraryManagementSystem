@@ -81,13 +81,13 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 	public static int funcCreateMaterialsObj (classAssociate_StudentMaterialTracker tracker) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
-		 * instance of the object MaterialReviews in MySQL.  
+		 * instance of the object associate_studentmaterialtracker in MySQL.  
 		 * 
 		 * params:
-		 *  material <type:MaterialReviews> (values.MaterialReviews)
+		 *  tracker <type:classAssociate_StudentMaterialTracker> (values.classAssociate_StudentMaterialTracker)
 		 * 
 		 * return value:
-		 * 	Fields <type:MaterialReviews>
+		 * 	intResult <type:Int>
 		 * */
 		conn =   DbConnection.getConnection();
 		int intResult = 0;

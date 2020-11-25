@@ -41,16 +41,15 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"                +
-						"professorId,"        +
-						"subjectId,"          +
-						"libririanId ,"       +
-						"MaterialId,"		  +
-						"dateReturned,"       +
-						"dateBorrowed,"       +
-						"assignedDateReturn," +
-						"isDue,"              +
-						"isReturned)";
+		String strfields ="(professorId,"         +
+							"subjectId,"          +
+							"libririanId ,"       +
+							"MaterialId,"		  +
+							"dateReturned,"       +
+							"dateBorrowed,"       +
+							"assignedDateReturn," +
+							"isDue,"              +
+							"isReturned)";
 		return strfields;
 	}
 	
@@ -66,7 +65,6 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
@@ -95,16 +93,15 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_professormaterialtracker " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, tracker.funcgetId());
-			objPreparedStatementObject.setInt(2, tracker.funcgetProfessorId());
-			objPreparedStatementObject.setInt(3, tracker.funcgetSubjectId());
-			objPreparedStatementObject.setInt(4, tracker.funcgetlibririanId());
-			objPreparedStatementObject.setInt(5, tracker.funcgetMaterialId());
-			objPreparedStatementObject.setDate(6, tracker.funcgetDateBorrowed());
-			objPreparedStatementObject.setDate(7, tracker.funcgetDateReturned());
-			objPreparedStatementObject.setDate(8, tracker.funcgetAssignedDateReturn());
-			objPreparedStatementObject.setInt(9, tracker.funcgetIsDue());
-			objPreparedStatementObject.setInt(10, tracker.funcgetIsReturned());
+			objPreparedStatementObject.setInt(1, tracker.funcgetProfessorId());
+			objPreparedStatementObject.setInt(2, tracker.funcgetSubjectId());
+			objPreparedStatementObject.setInt(3, tracker.funcgetlibririanId());
+			objPreparedStatementObject.setInt(4, tracker.funcgetMaterialId());
+			objPreparedStatementObject.setDate(5, tracker.funcgetDateBorrowed());
+			objPreparedStatementObject.setDate(6, tracker.funcgetDateReturned());
+			objPreparedStatementObject.setDate(7, tracker.funcgetAssignedDateReturn());
+			objPreparedStatementObject.setInt(8, tracker.funcgetIsDue());
+			objPreparedStatementObject.setInt(9, tracker.funcgetIsReturned());
 
 	
 			intResult = objPreparedStatementObject.executeUpdate();

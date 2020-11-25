@@ -41,17 +41,16 @@ public class classStudentCRUD {
 		 * return value:
 		 * 	Fields <type:String>
 		 * */
-		String strfields = "(id,"          +
-						"FirstName,"    +
-						"LastName,"     +
-						"MiddleName,"   +
-						"Webmail,"      +
-						"DateOfBirth,"  +
-						"Address,"      +
-						"City,"         +
-						"Province,"     +
-						"Course,"       +
-						"isGraduated,"  +
+		String strfields = "(FirstName,"       +
+						"LastName,"        +
+						"MiddleName,"      +
+						"Webmail,"         +
+						"DateOfBirth,"     +
+						"StreetAddress,"   +
+						"City,"            +
+						"Province,"        +
+						"Course,"          +
+						"isGraduated,"     +
 						"isEnrolled)";
 		return strfields;
 	}
@@ -67,18 +66,17 @@ public class classStudentCRUD {
 		 * return value:
 		 * 	Fields <type:String>
 		 * */
-		String strfields = "VALUES(?," +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?,"  +
-							  "?)";
+		String strfields = "VALUES(?,"+
+								"?,"  + 
+								"?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?,"  +
+							    "?)";
 		return strfields;
 	}
 
@@ -99,18 +97,17 @@ public class classStudentCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO student " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, student.funcgetId());
-			objPreparedStatementObject.setString(2, student.funcgetFirstName());
-			objPreparedStatementObject.setString(3, student.funcgetLastName());
-			objPreparedStatementObject.setString(4, student.funcgetMiddleName());
-			objPreparedStatementObject.setString(5, student.funcgetWebmail());
-			objPreparedStatementObject.setDate(6, student.funcgetDateOfBirth());
-			objPreparedStatementObject.setString(7, student.funcgetAddress());
-			objPreparedStatementObject.setString(8, student.funcgetCity());
-			objPreparedStatementObject.setString(9, student.funcgetProvince());
-			objPreparedStatementObject.setString(10, student.funcgetCourse());
-			objPreparedStatementObject.setInt(11, student.funcgetIsGraduated());
-			objPreparedStatementObject.setInt(12, student.funcgetIsEnrolled());
+			objPreparedStatementObject.setString(1, student.funcgetFirstName());
+			objPreparedStatementObject.setString(2, student.funcgetLastName());
+			objPreparedStatementObject.setString(3, student.funcgetMiddleName());
+			objPreparedStatementObject.setString(4, student.funcgetWebmail());
+			objPreparedStatementObject.setDate(5, student.funcgetDateOfBirth());
+			objPreparedStatementObject.setString(6, student.funcgetAddress());
+			objPreparedStatementObject.setString(7, student.funcgetCity());
+			objPreparedStatementObject.setString(8, student.funcgetProvince());
+			objPreparedStatementObject.setString(9, student.funcgetCourse());
+			objPreparedStatementObject.setInt(10, student.funcgetIsGraduated());
+			objPreparedStatementObject.setInt(11, student.funcgetIsEnrolled());
 			
 			intResult = objPreparedStatementObject.executeUpdate();
 			

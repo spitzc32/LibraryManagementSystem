@@ -40,19 +40,18 @@ public class classProfessorCRUD {
 		 * return value:
 		 * 	Fields <type:String>
 		 * */
-		String strfields = "(id,"          +
-						"FirstName,"    +
-						"LastName,"     +
-						"MiddleName,"   +
-						"Webmail,"      +
-						"DateOfBirth,"  +
-						"Address,"      +
-						"City,"         +
-						"Province,"     +
-						"Course,"       +
-						"isWorking,"    +
-						"shift,"        +
-						"isActive"      +
+		String strfields ="(FirstName,"       +
+						"LastName,"        +
+						"MiddleName,"      +
+						"Webmail,"         +
+						"DateOfBirth,"     +
+						"StreetAddress,"   +
+						"City,"            +
+						"Province,"        +
+						"Course,"          +
+						"isWorking,"       +
+						"shift,"           +
+						"isActive"         +
 						"isResigned)";
 		return strfields;
 	}
@@ -69,7 +68,6 @@ public class classProfessorCRUD {
 		 * 	Fields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
@@ -102,20 +100,19 @@ public class classProfessorCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO professor " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, professor.funcgetId());
-			objPreparedStatementObject.setString(2, professor.funcgetFirstName());
-			objPreparedStatementObject.setString(3, professor.funcgetLastName());
-			objPreparedStatementObject.setString(4, professor.funcgetMiddleName());
-			objPreparedStatementObject.setString(5, professor.funcgetWebmail());
-			objPreparedStatementObject.setDate(6, professor.funcgetDateOfBirth());
-			objPreparedStatementObject.setString(7, professor.funcgetAddress());
-			objPreparedStatementObject.setString(8, professor.funcgetCity());
-			objPreparedStatementObject.setString(9, professor.funcgetProvince());
-			objPreparedStatementObject.setString(10, professor.funcgetCourse());
-			objPreparedStatementObject.setInt(11, professor.funcgetIsWorking());
-			objPreparedStatementObject.setString(12, professor.funcgetShift());
-			objPreparedStatementObject.setInt(13, professor.funcgetIsActive());
-			objPreparedStatementObject.setInt(14, professor.funcgetIsResigned());
+			objPreparedStatementObject.setString(1, professor.funcgetFirstName());
+			objPreparedStatementObject.setString(2, professor.funcgetLastName());
+			objPreparedStatementObject.setString(3, professor.funcgetMiddleName());
+			objPreparedStatementObject.setString(4, professor.funcgetWebmail());
+			objPreparedStatementObject.setDate(5, professor.funcgetDateOfBirth());
+			objPreparedStatementObject.setString(6, professor.funcgetAddress());
+			objPreparedStatementObject.setString(7, professor.funcgetCity());
+			objPreparedStatementObject.setString(8, professor.funcgetProvince());
+			objPreparedStatementObject.setString(9, professor.funcgetCourse());
+			objPreparedStatementObject.setInt(10, professor.funcgetIsWorking());
+			objPreparedStatementObject.setString(11, professor.funcgetShift());
+			objPreparedStatementObject.setInt(12, professor.funcgetIsActive());
+			objPreparedStatementObject.setInt(13, professor.funcgetIsResigned());
 			
 			intResult = objPreparedStatementObject.executeUpdate();
 			

@@ -41,13 +41,12 @@ public class classLibrarianCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"          +
-						"FirstName,"    +
+		String strfields ="(FirstName,"    +
 						"LastName,"     +
 						"MiddleName,"   +
 						"Webmail,"      +
 						"DateOfBirth,"  +
-						"Address,"      +
+						"StreetAddress,"+
 						"City,"         +
 						"Province,"     +
 						"isWorking,"    +
@@ -79,7 +78,6 @@ public class classLibrarianCRUD {
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
-							  "?,"  +
 							  "?)";
 		return strfields;
 	}
@@ -101,19 +99,18 @@ public class classLibrarianCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO librarian " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, librarian.funcgetId());
-			objPreparedStatementObject.setString(2, librarian.funcgetFirstName());
-			objPreparedStatementObject.setString(3, librarian.funcgetLastName());
-			objPreparedStatementObject.setString(4, librarian.funcgetMiddleName());
-			objPreparedStatementObject.setString(5, librarian.funcgetWebmail());
-			objPreparedStatementObject.setDate(6, librarian.funcgetDateOfBirth());
-			objPreparedStatementObject.setString(7, librarian.funcgetAddress());
-			objPreparedStatementObject.setString(8, librarian.funcgetCity());
-			objPreparedStatementObject.setString(9, librarian.funcgetProvince());
-			objPreparedStatementObject.setInt(10, librarian.funcgetIsWorking());
-			objPreparedStatementObject.setString(11, librarian.funcgetShift());
-			objPreparedStatementObject.setInt(12, librarian.funcgetIsActive());
-			objPreparedStatementObject.setInt(13, librarian.funcgetIsResigned());
+			objPreparedStatementObject.setString(1, librarian.funcgetFirstName());
+			objPreparedStatementObject.setString(2, librarian.funcgetLastName());
+			objPreparedStatementObject.setString(3, librarian.funcgetMiddleName());
+			objPreparedStatementObject.setString(4, librarian.funcgetWebmail());
+			objPreparedStatementObject.setDate(5, librarian.funcgetDateOfBirth());
+			objPreparedStatementObject.setString(6, librarian.funcgetAddress());
+			objPreparedStatementObject.setString(7, librarian.funcgetCity());
+			objPreparedStatementObject.setString(8, librarian.funcgetProvince());
+			objPreparedStatementObject.setInt(9, librarian.funcgetIsWorking());
+			objPreparedStatementObject.setString(10, librarian.funcgetShift());
+			objPreparedStatementObject.setInt(11, librarian.funcgetIsActive());
+			objPreparedStatementObject.setInt(12, librarian.funcgetIsResigned());
 			
 			intResult = objPreparedStatementObject.executeUpdate();
 			

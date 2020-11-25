@@ -41,13 +41,12 @@ public class classMaterialsCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"                +
-						"Title,"              +
-						"Description,"        +
-						"Edition,"            +
-						"YearOfPublication,"  +
-						"DatePublished,"      +
-						"TypeOfMaterial";
+		String strfields = "(Title,"              +
+							"Description,"        +
+							"Edition,"            +
+							"YearOfPublication,"  +
+							"DatePublished,"      +
+							"TypeOfMaterial";
 		return strfields;
 	}
 	
@@ -63,7 +62,6 @@ public class classMaterialsCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
@@ -89,13 +87,12 @@ public class classMaterialsCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO materials " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, material.funcgetId());
-			objPreparedStatementObject.setString(2, material.funcgetTitle());
-			objPreparedStatementObject.setString(3, material.funcgetDescription());
-			objPreparedStatementObject.setString(4, material.funcgetEdition());
-			objPreparedStatementObject.setDate(5, material.funcgetYearOfPublication());
-			objPreparedStatementObject.setDate(6, material.funcgetDatePublished());
-			objPreparedStatementObject.setString(7, material.funcgetTypeOfMaterial());
+			objPreparedStatementObject.setString(1, material.funcgetTitle());
+			objPreparedStatementObject.setString(2, material.funcgetDescription());
+			objPreparedStatementObject.setString(3, material.funcgetEdition());
+			objPreparedStatementObject.setDate(4, material.funcgetYearOfPublication());
+			objPreparedStatementObject.setDate(5, material.funcgetDatePublished());
+			objPreparedStatementObject.setString(6, material.funcgetTypeOfMaterial());
 	
 			intResult = objPreparedStatementObject.executeUpdate();
 			

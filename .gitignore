@@ -1,0 +1,20 @@
+#Compiled class files
+*.class
+
+#package files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#Bin files
+/Library/bin/
+
+#Sql Connection
+DbConnection.java
+
+#Connection
+/Library/src/connection/

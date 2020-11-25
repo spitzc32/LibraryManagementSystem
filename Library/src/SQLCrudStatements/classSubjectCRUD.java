@@ -40,10 +40,9 @@ public class classSubjectCRUD {
 		 * return value:
 		 * 	Fields <type:String>
 		 * */
-		String strfields = "(id,"                +
-						"Title,"              +
-						"Description,"        +
-						"Code,";
+		String strfields ="(Title,"              +
+						   "Description,"        +
+						   "Code,";
 		return strfields;
 	}
 	
@@ -59,7 +58,6 @@ public class classSubjectCRUD {
 		 * 	Fields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							  "?,"  +
 							  "?,"  +
 							  "?)";
 		return strfields;
@@ -82,10 +80,9 @@ public class classSubjectCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO subject " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, subject.funcgetId());
-			objPreparedStatementObject.setString(2, subject.funcgetTitle());
-			objPreparedStatementObject.setString(3, subject.funcgetDescription());
-			objPreparedStatementObject.setString(4, subject.funcgetCode());
+			objPreparedStatementObject.setString(1, subject.funcgetTitle());
+			objPreparedStatementObject.setString(2, subject.funcgetDescription());
+			objPreparedStatementObject.setString(3, subject.funcgetCode());
 
 			intResult = objPreparedStatementObject.executeUpdate();
 			

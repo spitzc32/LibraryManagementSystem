@@ -40,8 +40,7 @@ public class classAuthorCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"          +
-						"FirstName,"    +
+		String strfields = "(FirstName,"    +
 						"LastName,"     +
 						"MiddleName,"   +
 						"Address,"      +
@@ -68,7 +67,6 @@ public class classAuthorCRUD {
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
-							  "?,"  +
 							  "?)";
 		return strfields;
 	}
@@ -90,14 +88,13 @@ public class classAuthorCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO author " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, author.funcgetId());
-			objPreparedStatementObject.setString(2, author.funcgetFirstName());
-			objPreparedStatementObject.setString(3, author.funcgetLastName());
-			objPreparedStatementObject.setString(4, author.funcgetMiddleName());
-			objPreparedStatementObject.setString(5, author.funcgetAddress());
-			objPreparedStatementObject.setString(6, author.funcgetCity());
-			objPreparedStatementObject.setString(7, author.funcgetProvince());
-			objPreparedStatementObject.setString(8, author.funcgetCountry());
+			objPreparedStatementObject.setString(1, author.funcgetFirstName());
+			objPreparedStatementObject.setString(2, author.funcgetLastName());
+			objPreparedStatementObject.setString(3, author.funcgetMiddleName());
+			objPreparedStatementObject.setString(4, author.funcgetAddress());
+			objPreparedStatementObject.setString(5, author.funcgetCity());
+			objPreparedStatementObject.setString(6, author.funcgetProvince());
+			objPreparedStatementObject.setString(7, author.funcgetCountry());
 			intResult = objPreparedStatementObject.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -40,9 +40,8 @@ public class classAssociate_MaterialSubjectCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"      +
-						"MaterialId,"  +
-						"SubjectId,";
+		String strfields ="(MaterialId,"  +
+						  "SubjectId,";
 					
 		return strfields;
 	}
@@ -59,7 +58,6 @@ public class classAssociate_MaterialSubjectCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							      "?," +
 							      "?)";
 		return strfields;
 	}
@@ -81,9 +79,8 @@ public class classAssociate_MaterialSubjectCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO associate_materialsubject " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, author.funcgetId());
-			objPreparedStatementObject.setInt(2, author.funcgetMaterialId());
-			objPreparedStatementObject.setInt(3, author.funcgetSubjectId());
+			objPreparedStatementObject.setInt(1, author.funcgetMaterialId());
+			objPreparedStatementObject.setInt(2, author.funcgetSubjectId());
 
 			intResult = objPreparedStatementObject.executeUpdate();
 			

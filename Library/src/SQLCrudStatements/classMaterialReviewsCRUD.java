@@ -39,8 +39,7 @@ public class classMaterialReviewsCRUD {
 		 * return value:
 		 * 	strfields <type:String>
 		 * */
-		String strfields = "(id,"               +
-						"MaterialId,"        +
+		String strfields = "(MaterialId,"        +
 						"StudentId,"         +
 						"ProfessorId ,"      +
 						"comment,"           +
@@ -60,7 +59,6 @@ public class classMaterialReviewsCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields = "VALUES(?," +
-							  "?,"  +
 							  "?,"  +
 							  "?,"  +
 							  "?,"  +
@@ -85,12 +83,11 @@ public class classMaterialReviewsCRUD {
 		try {
 			objPreparedStatementObject = conn.prepareStatement("INSERT INTO materialreviews " + funcSetFields()
 					+ funcSetValues());
-			objPreparedStatementObject.setInt(1, material.funcgetId());
-			objPreparedStatementObject.setInt(2, material.funcgetMaterialId());
-			objPreparedStatementObject.setInt(3, material.funcgetStudentId());
-			objPreparedStatementObject.setInt(4, material.funcgetProfessorId());
-			objPreparedStatementObject.setString(5, material.funcgetComment());
-			objPreparedStatementObject.setDate(6, material.funcgetTimestamp());
+			objPreparedStatementObject.setInt(1, material.funcgetMaterialId());
+			objPreparedStatementObject.setInt(2, material.funcgetStudentId());
+			objPreparedStatementObject.setInt(3, material.funcgetProfessorId());
+			objPreparedStatementObject.setString(4, material.funcgetComment());
+			objPreparedStatementObject.setDate(5, material.funcgetTimestamp());
 
 	
 			intResult = objPreparedStatementObject.executeUpdate();

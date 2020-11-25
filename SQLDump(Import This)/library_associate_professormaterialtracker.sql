@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `library`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: library
@@ -25,7 +23,7 @@ DROP TABLE IF EXISTS `associate_professormaterialtracker`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `associate_professormaterialtracker` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `professorId` int DEFAULT NULL,
   `psubjectId` int DEFAULT NULL,
   `plibririanId` int DEFAULT NULL,
@@ -36,14 +34,14 @@ CREATE TABLE `associate_professormaterialtracker` (
   `isReturned` tinyint DEFAULT NULL,
   `assignedDateReturn` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `professorId_idx` (`professorId`),
-  KEY `psubjectId_idx` (`psubjectId`),
-  KEY `professorlibrarianId_idx` (`plibririanId`),
-  KEY `professormaterialId_idx` (`pMaterialId`),
-  CONSTRAINT `professorId` FOREIGN KEY (`professorId`) REFERENCES `professor` (`id`),
-  CONSTRAINT `professorlibrarianId` FOREIGN KEY (`plibririanId`) REFERENCES `libririan` (`id`),
-  CONSTRAINT `professormaterialId` FOREIGN KEY (`pMaterialId`) REFERENCES `materials` (`id`),
-  CONSTRAINT `professorsubjectId` FOREIGN KEY (`psubjectId`) REFERENCES `subject` (`id`)
+  KEY `APMmaterialId_idx` (`pMaterialId`),
+  KEY `APMProfessorId_idx` (`professorId`),
+  KEY `APMSubjectId_idx` (`psubjectId`),
+  KEY `APMlibrarianId_idx` (`plibririanId`),
+  CONSTRAINT `APMlibrarianId` FOREIGN KEY (`plibririanId`) REFERENCES `libririan` (`id`),
+  CONSTRAINT `APMmaterialId` FOREIGN KEY (`pMaterialId`) REFERENCES `materials` (`id`),
+  CONSTRAINT `APMProfessorId` FOREIGN KEY (`professorId`) REFERENCES `professor` (`id`),
+  CONSTRAINT `APMSubjectId` FOREIGN KEY (`psubjectId`) REFERENCES `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-23 17:19:48
+-- Dump completed on 2020-11-25 14:09:41

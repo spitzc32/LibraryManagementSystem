@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `library`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: library
@@ -25,7 +23,7 @@ DROP TABLE IF EXISTS `associate_studentmaterialtracker`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `associate_studentmaterialtracker` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `studentId` int DEFAULT '0',
   `subjectId` int DEFAULT '0',
   `libririanId` int DEFAULT '0',
@@ -36,14 +34,14 @@ CREATE TABLE `associate_studentmaterialtracker` (
   `isReturned` tinyint DEFAULT NULL,
   `assignedDateReturn` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_idx` (`studentId`),
-  KEY `id_idx1` (`subjectId`),
-  KEY `id_idx2` (`libririanId`),
-  KEY `id_idx3` (`MaterialId`),
-  CONSTRAINT `librarianid` FOREIGN KEY (`libririanId`) REFERENCES `libririan` (`id`),
-  CONSTRAINT `materialid` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`),
-  CONSTRAINT `studentid` FOREIGN KEY (`studentId`) REFERENCES `student` (`id`),
-  CONSTRAINT `subjectid` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
+  KEY `ASMsubjectId_idx` (`subjectId`),
+  KEY `ASMstudentId_idx` (`studentId`),
+  KEY `ASMlibrarianId_idx` (`libririanId`),
+  KEY `ASMMaterialId_idx` (`MaterialId`),
+  CONSTRAINT `ASMlibrarianId` FOREIGN KEY (`libririanId`) REFERENCES `libririan` (`id`),
+  CONSTRAINT `ASMMaterialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`),
+  CONSTRAINT `ASMstudentId` FOREIGN KEY (`studentId`) REFERENCES `student` (`id`),
+  CONSTRAINT `ASMsubjectId` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-23 17:19:48
+-- Dump completed on 2020-11-25 14:09:41

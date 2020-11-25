@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `library`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: library
@@ -25,14 +23,14 @@ DROP TABLE IF EXISTS `associate_materialauthor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `associate_materialauthor` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `MaterialId` int DEFAULT NULL,
   `AuthorId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `materialAut_materialId_idx` (`MaterialId`),
-  KEY `materialAut_authorId_idx` (`AuthorId`),
-  CONSTRAINT `materialAut_authorId` FOREIGN KEY (`AuthorId`) REFERENCES `author` (`id`),
-  CONSTRAINT `materialAut_materialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`)
+  KEY `authorId_idx` (`AuthorId`),
+  KEY `materialId_idx` (`MaterialId`),
+  CONSTRAINT `authorId` FOREIGN KEY (`AuthorId`) REFERENCES `author` (`id`),
+  CONSTRAINT `materialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-23 17:19:46
+-- Dump completed on 2020-11-25 14:09:39

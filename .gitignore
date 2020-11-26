@@ -10,6 +10,10 @@
 *.tar.gz
 *.rar
 
+# Classpath and Project
+.classpath
+.project
+
 #Bin files
 Library/bin/
 
@@ -18,3 +22,4 @@ DbConnection.java
 
 #Connection
 Library/src/connection/
+

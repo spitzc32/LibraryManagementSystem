@@ -11,10 +11,10 @@
 *.rar
 
 #Bin files
-/Library/bin/
+Library/bin/
 
 #Sql Connection
 DbConnection.java
 
 #Connection
-/Library/src/connection/
+Library/src/connection/

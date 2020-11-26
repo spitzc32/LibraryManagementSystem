@@ -3,6 +3,7 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
 //getters and setters import
 import values.classMaterials;
@@ -46,7 +47,7 @@ public class classMaterialsCRUD {
 							"Edition,"            +
 							"YearOfPublication,"  +
 							"DatePublished,"      +
-							"TypeOfMaterial";
+							"TypeOfMaterial)";
 		return strfields;
 	}
 	
@@ -102,5 +103,45 @@ public class classMaterialsCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classMaterials> funcReadMeterialsObj () {
+		/* Returns a LinkedList of type <classMaterials>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object materials in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classMaterials> >
+		 * */
+
+		ArrayList<classMaterials> list = new ArrayList<classMaterials>();
+
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM materials");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classMaterials material = new classMaterials();
+				material.funcsetId(ojbResultSetObject.getInt("id"));
+				material.funcsetTitle(ojbResultSetObject.getString("Title"));
+				material.funcsetDescription(ojbResultSetObject.getString("Description"));
+				material.funcsetEdition(ojbResultSetObject.getString("Edition"));
+				material.funcsetYearOfPublication(ojbResultSetObject.getDate("YearOfPublication"));
+				material.funcsetDatePublished(ojbResultSetObject.getDate("DatePublished"));
+				material.funcsetTypeOfMaterial(ojbResultSetObject.getString("TypeOfMaterial"));
+				list.add(material);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

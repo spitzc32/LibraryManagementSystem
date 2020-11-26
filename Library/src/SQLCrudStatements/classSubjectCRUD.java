@@ -3,6 +3,8 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
+
 
 //getters and setters import
 import values.classSubject;
@@ -42,13 +44,13 @@ public class classSubjectCRUD {
 		 * */
 		String strfields ="(Title,"              +
 						   "Description,"        +
-						   "Code,";
+						   "Code)";
 		return strfields;
 	}
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the Author
+		 * by the fetched data from the Subject
 		 * instance
 		 * 
 		 * params:
@@ -92,5 +94,41 @@ public class classSubjectCRUD {
 		}
 		
 		return intResult;
+	}
+	public static ArrayList<classSubject> funcReadSubjectObj () {
+		/* Returns a LinkedList of type <classSubject>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object subject in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classSubject> >
+		 * */
+		
+		ArrayList<classSubject> list = new ArrayList<classSubject>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM subject");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classSubject Subject = new classSubject();
+				Subject.funcsetId(ojbResultSetObject.getInt("id"));
+				Subject.funcsetTitle(ojbResultSetObject.getString("Title"));
+				Subject.funcsetDescription(ojbResultSetObject.getString("Description"));
+				Subject.funcsetCode(ojbResultSetObject.getString("Code"));
+				list.add(Subject);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

@@ -3,6 +3,7 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
 //getters and setters import
 import values.classAssociate_ProfessorMaterialTracker;
@@ -42,9 +43,9 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields ="(professorId,"         +
-							"subjectId,"          +
-							"libririanId ,"       +
-							"MaterialId,"		  +
+							"psubjectId,"          +
+							"plibririanId ,"       +
+							"pMaterialId,"		  +
 							"dateReturned,"       +
 							"dateBorrowed,"       +
 							"assignedDateReturn," +
@@ -112,5 +113,50 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	//Fix for tomorrow
+	public static ArrayList<classAssociate_ProfessorMaterialTracker> funcReadAssociate_ProfessorMaterialTrackerObj () {
+		/* Returns a LinkedList of type <classAssociate_ProfessorMaterialTracker>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object associate_materialsubject in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classAssociate_ProfessorMaterialTracker> >
+		 * */
+		
+		ArrayList<classAssociate_ProfessorMaterialTracker> list = new ArrayList<classAssociate_ProfessorMaterialTracker>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM associate_professormaterialtracker");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classAssociate_ProfessorMaterialTracker material = new classAssociate_ProfessorMaterialTracker();
+				material.funcsetId(ojbResultSetObject.getInt("id"));
+				material.funcsetProfessorId(ojbResultSetObject.getInt("professorId"));
+				material.funcsetSubjectId(ojbResultSetObject.getInt("psubjectId"));
+				material.funcsetlibririanId(ojbResultSetObject.getInt("plibririanId"));
+				material.funcsetMaterialId(ojbResultSetObject.getInt("pMaterialId"));
+				material.funcsetDateReturned(ojbResultSetObject.getDate("dateReturned"));
+				material.funcsetDateBorrowed(ojbResultSetObject.getDate("dateBorrowed"));
+				material.funcsetAssignedDateReturn(ojbResultSetObject.getDate("assignedDateReturn"));
+				material.funcsetIsDue(ojbResultSetObject.getInt("isDue"));
+				material.funcsetIsReturned(ojbResultSetObject.getInt("isReturned"));
+				
+				list.add(material);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

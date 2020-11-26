@@ -3,12 +3,14 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
+
 
 //getters and setters import
 import values.classStudent;
 
 /* This Class is for executing the CRUD statements in SQL. 
- * 	- As predefined by our professor, the only thing 
+ * 	- As predefined by our Student, the only thing 
  *    we need to do is for Data Entry. So the main 
  *    requirements fulfilled by this class is more
  *    on  CREATE and READ statements in MySQL.
@@ -117,5 +119,51 @@ public class classStudentCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classStudent> funcReadStudentObj () {
+		/* Returns a LinkedList of type <classStudent>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object student in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classStudent> >
+		 * */
+		
+		ArrayList<classStudent> list = new ArrayList<classStudent>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM student");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classStudent Student = new classStudent();
+				Student.funcsetId(ojbResultSetObject.getInt("id"));
+				Student.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				Student.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				Student.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				Student.funcsetWebmail(ojbResultSetObject.getString("Webmail"));
+				Student.funcsetDateOfBirth(ojbResultSetObject.getDate("DateOfBirth"));
+				Student.funcsetAddress(ojbResultSetObject.getString("StreetAddress"));
+				Student.funcsetCity(ojbResultSetObject.getString("City"));
+				Student.funcsetProvince(ojbResultSetObject.getString("Province"));
+				Student.funcsetCourse(ojbResultSetObject.getString("Course"));
+				Student.funcsetIsGraduated(ojbResultSetObject.getInt("isGraduated"));
+				Student.funcsetIsEnrolled(ojbResultSetObject.getInt("isEnrolled"));
+				
+				list.add(Student);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

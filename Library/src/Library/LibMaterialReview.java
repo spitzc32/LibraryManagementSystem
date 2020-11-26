@@ -84,7 +84,7 @@ public class LibMaterialReview extends JFrame {
 		
 		txtProfessorIdtextField = new JTextField();
 		txtProfessorIdtextField.setColumns(10);
-		txtProfessorIdtextField.setBounds(118, 140, 291, 34);
+		txtProfessorIdtextField.setBounds(118, 144, 291, 34);
 		panel.add(txtProfessorIdtextField);
 		
 		JLabel lblCommentLabel = new JLabel("Comment");

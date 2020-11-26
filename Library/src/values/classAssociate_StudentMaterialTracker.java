@@ -77,7 +77,7 @@ public class classAssociate_StudentMaterialTracker {
 		return intIsDue;
 	}
 	
-	public void funcsetIsGraduated (int param) {
+	public void funcsetIsDue (int param) {
 		intIsDue = param;
 	}
 	

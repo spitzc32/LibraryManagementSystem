@@ -19,7 +19,6 @@ import java.sql.Date;
  * This class' main purpose is to store and get the values from the database and input fields
  * */
 
-
 public class classAssociate_ProfessorMaterialTracker {
 	private static int intId, 
 					   intProfessorId, 
@@ -77,7 +76,7 @@ public class classAssociate_ProfessorMaterialTracker {
 		return intIsDue;
 	}
 	
-	public void funcsetIsGraduated (int param) {
+	public void funcsetIsDue (int param) {
 		intIsDue = param;
 	}
 	

@@ -29,6 +29,7 @@ public class LibLibrarian extends JFrame {
 	private JTextField txtAddresstextField;
 	private JTextField txtCitytextField;
 	private JTextField txtProvincetextField;
+	private JTextField txtShifttextField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -52,14 +53,14 @@ public class LibLibrarian extends JFrame {
 	 */
 	public LibLibrarian() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1011, 601);
+		setBounds(100, 100, 1011, 624);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 42, 439, 511);
+		panel.setBounds(10, 42, 439, 535);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -144,39 +145,49 @@ public class LibLibrarian extends JFrame {
 		txtProvincetextField.setBounds(242, 345, 170, 34);
 		panel.add(txtProvincetextField);
 		
+		JLabel lblShiftLabel = new JLabel("Shift:");
+		lblShiftLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblShiftLabel.setBounds(51, 389, 98, 32);
+		panel.add(lblShiftLabel);
+		
+		txtShifttextField = new JTextField();
+		txtShifttextField.setColumns(10);
+		txtShifttextField.setBounds(97, 389, 275, 34);
+		panel.add(txtShifttextField);
+		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 289, 402, 2);
 		panel.add(separator);
 		
 		JCheckBox chckbxisActiveCheckBox = new JCheckBox("Are you a still Active?");
 		chckbxisActiveCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxisActiveCheckBox.setBounds(121, 397, 171, 21);
+		chckbxisActiveCheckBox.setBounds(115, 434, 171, 21);
 		panel.add(chckbxisActiveCheckBox);
 
 		JRadioButton rdbtnWorkingButton = new JRadioButton("currently working?");
 		buttonGroup.add(rdbtnWorkingButton);
 		rdbtnWorkingButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		rdbtnWorkingButton.setBounds(242, 428, 170, 21);
+		rdbtnWorkingButton.setBounds(242, 457, 170, 21);
 		panel.add(rdbtnWorkingButton);
 		
 		JRadioButton rdbtnResignedButton = new JRadioButton("currently resigned?");
-		buttonGroup.add(rdbtnResignedButton);
+		buttonGroup.add(rdbtnResignedButton	);
 		rdbtnResignedButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		rdbtnResignedButton.setBounds(10, 428, 157, 21);
+		rdbtnResignedButton.setBounds(10, 457, 157, 21);
 		panel.add(rdbtnResignedButton);
 		
 		JButton btnNewButton = new JButton("Save Entry");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(236, 467, 158, 32);
+		btnNewButton.setBounds(242, 493, 158, 32);
 		panel.add(btnNewButton);
 		
 		JButton btnDiscardChanges = new JButton("Discard Changes");
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnDiscardChanges.setBounds(29, 468, 158, 32);
+		btnDiscardChanges.setBounds(30, 493, 158, 32);
 		panel.add(btnDiscardChanges);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(459, 42, 527, 511);
+		panel_1.setBounds(460, 42, 527, 535);
 		contentPane.add(panel_1);
 		
 		table = new JTable();

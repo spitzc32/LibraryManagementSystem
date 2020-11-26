@@ -113,7 +113,7 @@ public class LibMaterial extends JFrame {
 		
 		txtTypeOfMaterialtextField = new JTextField();
 		txtTypeOfMaterialtextField.setColumns(10);
-		txtTypeOfMaterialtextField.setBounds(138, 208, 274, 34);
+		txtTypeOfMaterialtextField.setBounds(145, 208, 267, 34);
 		panel.add(txtTypeOfMaterialtextField);
 		
 		JSeparator separator = new JSeparator();

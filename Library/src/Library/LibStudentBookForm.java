@@ -17,6 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
+import javax.swing.JTextPane;
 
 public class LibStudentBookForm extends JFrame {
 
@@ -25,6 +26,8 @@ public class LibStudentBookForm extends JFrame {
 	private JTextField txtIdtextField;
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField txtDateBorrowedtextField;
+	private JTextField txtDateReturnedtextField;
 
 	/**
 	 * Launch the application.
@@ -64,7 +67,7 @@ public class LibStudentBookForm extends JFrame {
 		panel.add(lblIdLabel);
 		
 		txtIdtextField = new JTextField();
-		txtIdtextField.setBounds(121, 27, 291, 34);
+		txtIdtextField.setBounds(121, 25, 291, 34);
 		panel.add(txtIdtextField);
 		txtIdtextField.setColumns(10);
 		
@@ -90,12 +93,12 @@ public class LibStudentBookForm extends JFrame {
 		
 		JLabel lblAssignedDateReturnLabel = new JLabel("Date to Return");
 		lblAssignedDateReturnLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAssignedDateReturnLabel.setBounds(10, 298, 98, 32);
+		lblAssignedDateReturnLabel.setBounds(10, 397, 98, 32);
 		panel.add(lblAssignedDateReturnLabel);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(121, 300, 291, 34);
+		textField.setBounds(121, 397, 291, 34);
 		panel.add(textField);
 		
 		JSeparator separator = new JSeparator();
@@ -105,13 +108,13 @@ public class LibStudentBookForm extends JFrame {
 		JCheckBox chckbxisGraduatedCheckBox = new JCheckBox("Due");
 		buttonGroup.add(chckbxisGraduatedCheckBox);
 		chckbxisGraduatedCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxisGraduatedCheckBox.setBounds(155, 261, 51, 27);
+		chckbxisGraduatedCheckBox.setBounds(154, 356, 51, 27);
 		panel.add(chckbxisGraduatedCheckBox);
 		
 		JCheckBox chckbxisEnrolledCheckBox = new JCheckBox("Returned");
 		buttonGroup.add(chckbxisEnrolledCheckBox);
 		chckbxisEnrolledCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxisEnrolledCheckBox.setBounds(258, 261, 85, 27);
+		chckbxisEnrolledCheckBox.setBounds(258, 356, 85, 27);
 		panel.add(chckbxisEnrolledCheckBox);
 		
 		JButton btnNewButton = new JButton("Save Entry");
@@ -139,6 +142,26 @@ public class LibStudentBookForm extends JFrame {
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(121, 215, 291, 30);
 		panel.add(comboBox_3);
+		
+		JLabel lblDateBorrowed = new JLabel("Date Borrowed");
+		lblDateBorrowed.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDateBorrowed.setBounds(10, 263, 98, 32);
+		panel.add(lblDateBorrowed);
+		
+		txtDateBorrowedtextField = new JTextField();
+		txtDateBorrowedtextField.setColumns(10);
+		txtDateBorrowedtextField.setBounds(121, 262, 291, 34);
+		panel.add(txtDateBorrowedtextField);
+		
+		JLabel lblDateReturned = new JLabel("Date Returned");
+		lblDateReturned.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDateReturned.setBounds(10, 315, 98, 32);
+		panel.add(lblDateReturned);
+		
+		txtDateReturnedtextField = new JTextField();
+		txtDateReturnedtextField.setColumns(10);
+		txtDateReturnedtextField.setBounds(121, 312, 291, 34);
+		panel.add(txtDateReturnedtextField);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 527, 511);

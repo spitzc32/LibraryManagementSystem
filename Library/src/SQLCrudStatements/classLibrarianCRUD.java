@@ -3,6 +3,7 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
 //getters and setters import
 import values.classLibrarian;
@@ -120,5 +121,51 @@ public class classLibrarianCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classLibrarian> funcReadLibrarianObj () {
+		/* Returns a LinkedList of type <classLibrarian>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object librarian in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classLibrarian> >
+		 * */
+		
+		ArrayList<classLibrarian> list = new ArrayList<classLibrarian>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM librarian");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classLibrarian librarian = new classLibrarian();
+				librarian.funcsetId(ojbResultSetObject.getInt("id"));
+				librarian.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				librarian.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				librarian.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				librarian.funcsetWebmail(ojbResultSetObject.getString("Webmail"));
+				librarian.funcsetDateOfBirth(ojbResultSetObject.getDate("DateOfBirth"));
+				librarian.funcsetAddress(ojbResultSetObject.getString("StreetAddress"));
+				librarian.funcsetCity(ojbResultSetObject.getString("City"));
+				librarian.funcsetProvince(ojbResultSetObject.getString("Province"));
+				librarian.funcsetShift(ojbResultSetObject.getString("shift"));
+				librarian.funcsetIsWorking(ojbResultSetObject.getInt("isWorking"));
+				librarian.funcsetIsActive(ojbResultSetObject.getInt("isActive"));
+				librarian.funcsetIsResigned(ojbResultSetObject.getInt("isResigned"));
+				list.add(librarian);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

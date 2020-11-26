@@ -3,9 +3,11 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
-import values.classMaterialReviews;
 //getters and setters import
+import values.classMaterialReviews;
+
 
 /* This Class is for executing the CRUD statements in SQL. 
 * 	- As predefined by our professor, the only thing 
@@ -43,7 +45,7 @@ public class classMaterialReviewsCRUD {
 						"StudentId,"         +
 						"ProfessorId ,"      +
 						"comment,"           +
-						"timestamp";
+						"timestamp)";
 		return strfields;
 	}
 	
@@ -98,5 +100,44 @@ public class classMaterialReviewsCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classMaterialReviews> funcReadMeterialReviewsObj () {
+		/* Returns a LinkedList of type <classMaterialReviews>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object materialreviews in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classMaterialReviews> >
+		 * */
+
+		ArrayList<classMaterialReviews> list = new ArrayList<classMaterialReviews>();
+
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM materialreviews");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classMaterialReviews material = new classMaterialReviews();
+				material.funcsetId(ojbResultSetObject.getInt("id"));
+				material.funcsetMaterialId(ojbResultSetObject.getInt("MaterialId"));
+				material.funcsetStudentId(ojbResultSetObject.getInt("StudentId"));
+				material.funcsetProfessorId(ojbResultSetObject.getInt("ProfessorId"));
+				material.funcsetComment(ojbResultSetObject.getString("comment"));
+				material.funcsetTimestamp(ojbResultSetObject.getDate("timestamp"));
+				list.add(material);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

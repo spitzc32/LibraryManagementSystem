@@ -3,6 +3,7 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
 //getters and setters import
 import values.classProfessor;
@@ -40,18 +41,18 @@ public class classProfessorCRUD {
 		 * return value:
 		 * 	Fields <type:String>
 		 * */
-		String strfields ="(FirstName,"       +
-						"LastName,"        +
-						"MiddleName,"      +
-						"Webmail,"         +
-						"DateOfBirth,"     +
-						"StreetAddress,"   +
-						"City,"            +
-						"Province,"        +
-						"Course,"          +
-						"isWorking,"       +
-						"shift,"           +
-						"isActive"         +
+		String strfields ="(FirstName,"     +
+						"LastName,"         +
+						"MiddleName,"       +
+						"Webmail,"          +
+						"DateOfBirth,"      +
+						"StreetAddress,"    +
+						"City,"             +
+						"Province,"         +
+						"Course,"           +
+						"isWorking,"        +
+						"shift,"            +
+						"isActive,"         +
 						"isResigned)";
 		return strfields;
 	}
@@ -122,5 +123,52 @@ public class classProfessorCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classProfessor> funcReadProfessorObj () {
+		/* Returns a LinkedList of type <classProfessor>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object professor in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classProfessor> >
+		 * */
+		
+		ArrayList<classProfessor> list = new ArrayList<classProfessor>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM professor");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classProfessor Professor = new classProfessor();
+				Professor.funcsetId(ojbResultSetObject.getInt("id"));
+				Professor.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				Professor.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				Professor.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				Professor.funcsetWebmail(ojbResultSetObject.getString("Webmail"));
+				Professor.funcsetDateOfBirth(ojbResultSetObject.getDate("DateOfBirth"));
+				Professor.funcsetAddress(ojbResultSetObject.getString("StreetAddress"));
+				Professor.funcsetCity(ojbResultSetObject.getString("City"));
+				Professor.funcsetProvince(ojbResultSetObject.getString("Province"));
+				Professor.funcsetCourse(ojbResultSetObject.getString("Course"));
+				Professor.funcsetShift(ojbResultSetObject.getString("shift"));
+				Professor.funcsetIsWorking(ojbResultSetObject.getInt("isWorking"));
+				Professor.funcsetIsActive(ojbResultSetObject.getInt("isActive"));
+				Professor.funcsetIsResigned(ojbResultSetObject.getInt("isResigned"));
+				list.add(Professor);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

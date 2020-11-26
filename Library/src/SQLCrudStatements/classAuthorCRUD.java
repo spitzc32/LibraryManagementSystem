@@ -3,6 +3,7 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
 
 //getters and setters import
 import values.classAuthor;
@@ -46,7 +47,7 @@ public class classAuthorCRUD {
 						"Address,"      +
 						"City,"         +
 						"Province,"     +
-						"Country";
+						"Country)";
 		return strfields;
 	}
 	
@@ -103,5 +104,46 @@ public class classAuthorCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classAuthor> funcReadAuthorObj () {
+		/* Returns a LinkedList of type <classAuthor>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object author in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classAuthor> >
+		 * */
+		
+		ArrayList<classAuthor> list = new ArrayList<classAuthor>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM author");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classAuthor author = new classAuthor();
+				author.funcsetId(ojbResultSetObject.getInt("id"));
+				author.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				author.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				author.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				author.funcsetAddress(ojbResultSetObject.getString("Address"));
+				author.funcsetCity(ojbResultSetObject.getString("City"));
+				author.funcsetProvince(ojbResultSetObject.getString("Province"));
+				author.funcsetCountry(ojbResultSetObject.getString("Country"));
+				list.add(author);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

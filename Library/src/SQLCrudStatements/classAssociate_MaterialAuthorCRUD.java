@@ -7,6 +7,9 @@ import java.sql.*;
 //getters and setters import
 import values.classAssociate_MaterialAuthor;
 
+//ArrayList
+import java.util.ArrayList;
+
 /* This Class is for executing the CRUD statements in SQL. 
 * 	- As predefined by our professor, the only thing 
 *    we need to do is for Data Entry. So the main 
@@ -42,7 +45,7 @@ public class classAssociate_MaterialAuthorCRUD {
 		 * 	Fields <type:String>
 		 * */
 		String strfields = "(MaterialId,"  +
-						   "AuthorId,";
+						   "AuthorId)";
 					
 		return strfields;
 	}
@@ -91,5 +94,41 @@ public class classAssociate_MaterialAuthorCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classAssociate_MaterialAuthor> funcReadAssociate_MaterialAuthorObj () {
+		/* Returns a LinkedList of type <classAssociate_MaterialAuthor>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object associate_materialauthor in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classAssociate_MaterialAuthor> >
+		 * */
+		
+		ArrayList<classAssociate_MaterialAuthor> list = new ArrayList<classAssociate_MaterialAuthor>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM associate_materialauthor");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classAssociate_MaterialAuthor author = new classAssociate_MaterialAuthor();
+				author.funcsetId(ojbResultSetObject.getInt("id"));
+				author.funcsetMaterialId(ojbResultSetObject.getInt("MaterialId"));
+				author.funcsetAuthorId(ojbResultSetObject.getInt("AuthorId"));
+				list.add(author);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

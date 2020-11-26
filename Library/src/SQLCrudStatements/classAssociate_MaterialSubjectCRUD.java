@@ -2,6 +2,8 @@ package SQLCrudStatements;
 
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
+
 
 //getters and setters import
 import values.classAssociate_MaterialSubject;
@@ -41,7 +43,7 @@ public class classAssociate_MaterialSubjectCRUD {
 		 * 	strfields <type:String>
 		 * */
 		String strfields ="(MaterialId,"  +
-						  "SubjectId,";
+						  "SubjectId)";
 					
 		return strfields;
 	}
@@ -90,5 +92,41 @@ public class classAssociate_MaterialSubjectCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classAssociate_MaterialSubject> funcReadAssociate_MaterialSubjectObj () {
+		/* Returns a LinkedList of type <classAssociate_MaterialSubject>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object associate_materialsubject in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classAssociate_MaterialSubject> >
+		 * */
+		
+		ArrayList<classAssociate_MaterialSubject> list = new ArrayList<classAssociate_MaterialSubject>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM associate_materialsubject");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classAssociate_MaterialSubject author = new classAssociate_MaterialSubject();
+				author.funcsetId(ojbResultSetObject.getInt("id"));
+				author.funcsetMaterialId(ojbResultSetObject.getInt("MaterialId"));
+				author.funcsetSubjectId(ojbResultSetObject.getInt("SubjectId"));
+				list.add(author);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

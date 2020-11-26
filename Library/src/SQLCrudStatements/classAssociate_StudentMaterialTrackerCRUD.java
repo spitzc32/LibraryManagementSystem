@@ -3,6 +3,8 @@ package SQLCrudStatements;
 //SQL imports
 import connection.DbConnection;
 import java.sql.*;
+import java.util.ArrayList;
+
 
 //getters and setters import
 import values.classAssociate_StudentMaterialTracker;
@@ -112,5 +114,49 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classAssociate_StudentMaterialTracker> funcReadAssociate_ProfessorMaterialTrackerObj () {
+		/* Returns a LinkedList of type <classAssociate_StudentMaterialTracker>
+		 * of the READ statementDone by MySQL. This is for creating a 
+		 * new instance of the object associate_studentmaterialtracker in MySQL.  
+		 * 
+		 * params:
+		 *  none
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classAssociate_StudentMaterialTracker> >
+		 * */
+		
+		ArrayList<classAssociate_StudentMaterialTracker> list = new ArrayList<classAssociate_StudentMaterialTracker>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM associate_studentmaterialtracker");  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classAssociate_StudentMaterialTracker material = new classAssociate_StudentMaterialTracker();
+				material.funcsetId(ojbResultSetObject.getInt("id"));
+				material.funcsetStudentId(ojbResultSetObject.getInt("studentId"));
+				material.funcsetSubjectId(ojbResultSetObject.getInt("subjectId"));
+				material.funcsetlibririanId(ojbResultSetObject.getInt("libririanId"));
+				material.funcsetMaterialId(ojbResultSetObject.getInt("MaterialId"));
+				material.funcsetDateReturned(ojbResultSetObject.getDate("dateReturned"));
+				material.funcsetDateBorrowed(ojbResultSetObject.getDate("dateBorrowed"));
+				material.funcsetAssignedDateReturn(ojbResultSetObject.getDate("assignedDateReturn"));
+				material.funcsetIsDue(ojbResultSetObject.getInt("isDue"));
+				material.funcsetIsReturned(ojbResultSetObject.getInt("isReturned"));
+				
+				list.add(material);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+
 	}
 }

@@ -68,7 +68,7 @@ public class LibProfessor extends JFrame {
 		panel.setLayout(null);
 		
 		Choice choice = new Choice();
-		choice.setBounds(257, 383, 68, 37);
+		choice.setBounds(263, 384, 78, 20);
 		panel.add(choice);
 		
 		choice.addItem("Day");

@@ -5,11 +5,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import executioner.classProfessorExe;
+import values.classProfessor;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
@@ -19,11 +28,16 @@ import java.awt.Choice;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.ButtonGroup;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LibProfessor extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblProfessortable;
 	private JTextField txtFirstNametextField;
 	private JTextField txtLastNametextField;
 	private JTextField txtMiddleNametextField;
@@ -32,7 +46,7 @@ public class LibProfessor extends JFrame {
 	private JTextField txtAddresstextField;
 	private JTextField txtCitytextField;
 	private JTextField txtProvincetextField;
-	private JTextField textField;
+	private JTextField txtCoursetextField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -68,12 +82,14 @@ public class LibProfessor extends JFrame {
 		panel.setLayout(null);
 		
 		Choice choice = new Choice();
-		choice.setBounds(263, 384, 78, 20);
+		choice.setBounds(287, 385, 125, 20);
 		panel.add(choice);
 		
 		choice.addItem("Day");
 		choice.addItem("Noon");
 		choice.addItem("Night");
+		
+		String Shift = choice.getItem(choice.getSelectedIndex());
 		
 		JCheckBox chckbxisWorkingCheckBox = new JCheckBox("Working");
 		chckbxisWorkingCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -85,6 +101,12 @@ public class LibProfessor extends JFrame {
 		chckbxisActiveCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxisActiveCheckBox.setBounds(58, 407, 135, 21);
 		panel.add(chckbxisActiveCheckBox);
+		
+		JCheckBox chckbxisResignedCheckBox_1 = new JCheckBox("Resigned");
+		buttonGroup.add(chckbxisResignedCheckBox_1);
+		chckbxisResignedCheckBox_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxisResignedCheckBox_1.setBounds(58, 431, 135, 21);
+		panel.add(chckbxisResignedCheckBox_1);
 		
 		JLabel lblFirstNameLabel = new JLabel("First Name");
 		lblFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -164,7 +186,7 @@ public class LibProfessor extends JFrame {
 		
 		txtProvincetextField = new JTextField();
 		txtProvincetextField.setColumns(10);
-		txtProvincetextField.setBounds(287, 340, 122, 30);
+		txtProvincetextField.setBounds(287, 340, 125, 30);
 		panel.add(txtProvincetextField);
 		
 		JLabel lblCourse = new JLabel("Course");
@@ -172,16 +194,50 @@ public class LibProfessor extends JFrame {
 		lblCourse.setBounds(10, 245, 98, 32);
 		panel.add(lblCourse);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(121, 243, 291, 34);
-		panel.add(textField);
+		txtCoursetextField = new JTextField();
+		txtCoursetextField.setColumns(10);
+		txtCoursetextField.setBounds(121, 243, 291, 34);
+		panel.add(txtCoursetextField);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 332, 402, 2);
 		panel.add(separator);
 		
 		JButton btnNewButton = new JButton("Save Entry");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					classProfessor professor = new classProfessor();
+					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+					java.sql.Date sql = new java.sql.Date(date.getTime());
+					int isWorking = chckbxisWorkingCheckBox.isSelected() ? 1 : 0;
+					int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
+					int isResigned = chckbxisResignedCheckBox_1.isSelected() ? 1 : 0;
+					
+					classProfessorExe.setValues(professor,
+							txtFirstNametextField.getText(),
+							txtLastNametextField.getText(),
+							txtMiddleNametextField.getText(),
+							txtWebmailtextField.getText(),
+							sql,
+							txtAddresstextField.getText(),
+							txtCitytextField.getText(),
+							txtProvincetextField.getText(),
+							txtCoursetextField.getText(),
+							isWorking,
+							Shift,
+							isActive,
+							isResigned);
+					
+					JOptionPane.showMessageDialog(null, classProfessorExe.exeInsertStatements(professor));
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(236, 467, 158, 32);
 		panel.add(btnNewButton);
@@ -191,30 +247,38 @@ public class LibProfessor extends JFrame {
 		btnDiscardChanges.setBounds(29, 468, 158, 32);
 		panel.add(btnDiscardChanges);
 		
-		JCheckBox chckbxisResignedCheckBox_1 = new JCheckBox("Resigned");
-		buttonGroup.add(chckbxisResignedCheckBox_1);
-		chckbxisResignedCheckBox_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxisResignedCheckBox_1.setBounds(58, 431, 135, 21);
-		panel.add(chckbxisResignedCheckBox_1);
-		
 		JLabel lblShift = new JLabel("Shift");
-		lblShift.setBounds(213, 377, 98, 32);
+		lblShift.setBounds(213, 380, 98, 32);
 		panel.add(lblShift);
 		lblShift.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 527, 511);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane);
+		
+		tblProfessortable = new JTable();
+		tblProfessortable.setFillsViewportHeight(true);
+		tblProfessortable.setColumnSelectionAllowed(true);
+		tblProfessortable.setCellSelectionEnabled(true);
+		panel_1.add(tblProfessortable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"id", "FirstName", "LastName", "MiddleName", "Webmail", "DateOfBirth", "StreetAddress", "City", "Province", "Course", "isWorking", "Shift", "isActive", "isResigned"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classProfessorExe.exeReadStatements(objtableModel);
+		tblProfessortable.setModel(objtableModel);
 		
 		JLabel lblTitleLabel = new JLabel("Professor Entry");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitleLabel.setBounds(27, 10, 178, 30);
 		contentPane.add(lblTitleLabel);
+		
 	}
 }

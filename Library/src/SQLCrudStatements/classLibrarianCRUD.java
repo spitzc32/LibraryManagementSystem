@@ -52,7 +52,7 @@ public class classLibrarianCRUD {
 						"Province,"     +
 						"isWorking,"    +
 						"shift,"        +
-						"isActive"      +
+						"isActive,"      +
 						"isResigned)";
 		return strfields;
 	}

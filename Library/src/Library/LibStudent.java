@@ -1,13 +1,17 @@
 package Library;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -15,11 +19,24 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;  
+import java.util.Date; 
+
+//import exe
+import executioner.classStudentExe;
+
+//import value handler
+import values.classStudent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class LibStudent extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblStudenttable;
 	private JTextField txtFirstNametextField;
 	private JTextField txtLastNametextField;
 	private JTextField txtMiddleNametextField;
@@ -28,7 +45,7 @@ public class LibStudent extends JFrame {
 	private JTextField txtAddresstextField;
 	private JTextField txtCitytextField;
 	private JTextField txtProvincetextField;
-	private JTextField textField;
+	private JTextField txtCoursetextField;
 
 	/**
 	 * Launch the application.
@@ -51,14 +68,14 @@ public class LibStudent extends JFrame {
 	 */
 	public LibStudent() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 42, 439, 511);
+		panel.setBounds(12, 42, 439, 511);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -68,7 +85,7 @@ public class LibStudent extends JFrame {
 		panel.add(lblFirstNameLabel);
 		
 		txtFirstNametextField = new JTextField();
-		txtFirstNametextField.setBounds(121, 27, 291, 34);
+		txtFirstNametextField.setBounds(118, 29, 291, 30);
 		panel.add(txtFirstNametextField);
 		txtFirstNametextField.setColumns(10);
 		
@@ -148,10 +165,10 @@ public class LibStudent extends JFrame {
 		lblCourse.setBounds(10, 245, 98, 32);
 		panel.add(lblCourse);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(121, 243, 291, 34);
-		panel.add(textField);
+		txtCoursetextField = new JTextField();
+		txtCoursetextField.setColumns(10);
+		txtCoursetextField.setBounds(121, 243, 291, 34);
+		panel.add(txtCoursetextField);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 340, 402, 2);
@@ -167,25 +184,70 @@ public class LibStudent extends JFrame {
 		chckbxisEnrolledCheckBox.setBounds(249, 398, 184, 21);
 		panel.add(chckbxisEnrolledCheckBox);
 		
-		JButton btnNewButton = new JButton("Save Entry");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(236, 467, 158, 32);
-		panel.add(btnNewButton);
-		
-		JButton btnDiscardChanges = new JButton("Discard Changes");
-		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnDiscardChanges.setBounds(29, 468, 158, 32);
-		panel.add(btnDiscardChanges);
+		JButton btnSaveButton = new JButton("Save Entry");
+		btnSaveButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Save statement
+				try {
+					classStudent student = new classStudent();
+					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+					java.sql.Date sql = new java.sql.Date(date.getTime());
+					int isGraduated = chckbxisGraduatedCheckBox.isSelected() ? 1 : 0;
+					int isEnrolled = chckbxisEnrolledCheckBox.isSelected() ? 1 : 0;
+					
+					classStudentExe.setValues(student,
+							txtFirstNametextField.getText(),
+							txtLastNametextField.getText(),
+							txtMiddleNametextField.getText(),
+							txtWebmailtextField.getText(),
+							sql,
+							txtAddresstextField.getText(),
+							txtCitytextField.getText(),
+							txtProvincetextField.getText(),
+							txtCoursetextField.getText(),
+							isGraduated,
+							isEnrolled);
+					
+					JOptionPane.showMessageDialog(null, classStudentExe.exeInsertStatements(student));
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSaveButton.setBounds(236, 467, 158, 32);
+		panel.add(btnSaveButton);
+		 
+		JButton btnDiscardChangesButton = new JButton("Discard Changes");
+		btnDiscardChangesButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnDiscardChangesButton.setBounds(29, 468, 158, 32);
+		panel.add(btnDiscardChangesButton);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(459, 42, 527, 511);
+		panel_1.setBounds(459, 42, 617, 511);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane);
+		
+		tblStudenttable = new JTable();
+		tblStudenttable.setFillsViewportHeight(true);
+		tblStudenttable.setColumnSelectionAllowed(true);
+		tblStudenttable.setCellSelectionEnabled(true);
+		panel_1.add(tblStudenttable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"id", "FirstName", "LastName", "MiddleName", "Webmail", "DateOfBirth", "StreetAddress", "City", "Province", "Course", "isGraduated", "isEnrolled"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classStudentExe.exeReadStatements(objtableModel);
+		tblStudenttable.setModel(objtableModel);
 		
 		JLabel lblTitleLabel = new JLabel("Student Entry");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 //getters and setters import
 import values.classAssociate_StudentMaterialTracker;
+import values.classEntity;
+import values.classObject;
 
 /* This Class is for executing the CRUD statements in SQL. 
-* 	- As predefined by our professor, the only thing 
+* 	- As predefined by our Student, the only thing 
 *    we need to do is for Data Entry. So the main 
 *    requirements fulfilled by this class is more
 *    on  CREATE and READ statements in MySQL.
@@ -57,7 +59,7 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the MaterialReviews
+		 * by the fetched data from the associate_professormaterialtracker
 		 * instance
 		 * 
 		 * params:
@@ -116,7 +118,75 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 		return intResult;
 	}
 	
-	public static ArrayList<classAssociate_StudentMaterialTracker> funcReadAssociate_ProfessorMaterialTrackerObj () {
+	public static ArrayList<classEntity> funcRetrieveAssociate_StudentMaterialTrackerObj (String table) {
+		/* Returns a LinkedList of type <classEntity>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classEntity> >
+		 * */
+		ArrayList<classEntity> list = new ArrayList<classEntity>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classEntity entity = new classEntity();
+				entity.funcsetId(ojbResultSetObject.getInt("id"));
+				entity.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				entity.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				entity.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				
+				list.add(entity);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+	}
+	
+	public static ArrayList<classObject> funcRetrieveObjectAssociate_StudentMaterialTrackerObj (String table) {
+		/* Returns a LinkedList of type <classObject>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classObject> >
+		 * */
+		ArrayList<classObject> list = new ArrayList<classObject>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT id, Title FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classObject object = new classObject();
+				object.funcsetId(ojbResultSetObject.getInt("id"));
+				object.funcsetTitle(ojbResultSetObject.getString("Title"));
+				
+				list.add(object);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+	}
+	
+	public static ArrayList<classAssociate_StudentMaterialTracker> funcReadAssociate_StudentMaterialTrackerObj () {
 		/* Returns a LinkedList of type <classAssociate_StudentMaterialTracker>
 		 * of the READ statementDone by MySQL. This is for creating a 
 		 * new instance of the object associate_studentmaterialtracker in MySQL.  

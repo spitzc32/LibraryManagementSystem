@@ -5,8 +5,10 @@ import connection.DbConnection;
 import java.sql.*;
 import java.util.ArrayList;
 
+import values.classEntity;
 //getters and setters import
 import values.classMaterialReviews;
+import values.classObject;
 
 
 /* This Class is for executing the CRUD statements in SQL. 
@@ -100,6 +102,74 @@ public class classMaterialReviewsCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classEntity> funcRetrieveMaterialReviewsObj (String table) {
+		/* Returns a LinkedList of type <classEntity>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classEntity> >
+		 * */
+		ArrayList<classEntity> list = new ArrayList<classEntity>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT * FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classEntity entity = new classEntity();
+				entity.funcsetId(ojbResultSetObject.getInt("id"));
+				entity.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				entity.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				entity.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				
+				list.add(entity);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+	}
+	
+	public static ArrayList<classObject> funcRetrieveObjectMaterialReviewsObj (String table) {
+		/* Returns a LinkedList of type <classObject>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classObject> >
+		 * */
+		ArrayList<classObject> list = new ArrayList<classObject>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT id, Title FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classObject object = new classObject();
+				object.funcsetId(ojbResultSetObject.getInt("id"));
+				object.funcsetTitle(ojbResultSetObject.getString("Title"));
+				
+				list.add(object);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
 	}
 	
 	public static ArrayList<classMaterialReviews> funcReadMeterialReviewsObj () {

@@ -6,6 +6,8 @@ import java.sql.*;
 
 //getters and setters import
 import values.classAssociate_MaterialAuthor;
+import values.classEntity;
+import values.classObject;
 
 //ArrayList
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 *    
 * 	  Fields gathered in this requirement is the 
 *    same as the fields fetched by 
-*    values.Associate_ProfessorMaterialTracker.
+*    values.Associate_MaterialAuthor.
 *
 * */
 
@@ -52,7 +54,7 @@ public class classAssociate_MaterialAuthorCRUD {
 	
 	public static  String funcSetValues() {
 		/* Return the fields that are filled
-		 * by the fetched data from the Author
+		 * by the fetched data from the associate_materialauthor
 		 * instance
 		 * 
 		 * params:
@@ -94,6 +96,74 @@ public class classAssociate_MaterialAuthorCRUD {
 		}
 		
 		return intResult;
+	}
+	
+	public static ArrayList<classEntity> funcRetrieveAssociate_MaterialAuthorObj (String table) {
+		/* Returns a LinkedList of type <classEntity>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classEntity> >
+		 * */
+		ArrayList<classEntity> list = new ArrayList<classEntity>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT id, FirstName, LastName, MiddleName FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classEntity entity = new classEntity();
+				entity.funcsetId(ojbResultSetObject.getInt("id"));
+				entity.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				entity.funcsetLastName(ojbResultSetObject.getString("LastName"));
+				entity.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				
+				list.add(entity);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
+	}
+	
+	public static ArrayList<classObject> funcRetrieveObjectAssociate_MaterialAuthorObj (String table) {
+		/* Returns a LinkedList of type <classObject>
+		 * of the A retrieve statement Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for dropdowns.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classObject> >
+		 * */
+		ArrayList<classObject> list = new ArrayList<classObject>();
+		
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT id, Title FROM " + table);  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				classObject object = new classObject();
+				object.funcsetId(ojbResultSetObject.getInt("id"));
+				object.funcsetTitle(ojbResultSetObject.getString("Title"));
+				
+				list.add(object);
+			}
+		}
+		catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return list;
 	}
 	
 	public static ArrayList<classAssociate_MaterialAuthor> funcReadAssociate_MaterialAuthorObj () {

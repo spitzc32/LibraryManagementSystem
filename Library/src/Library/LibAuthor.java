@@ -1,21 +1,34 @@
 package Library;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+
+import executioner.classAuthorExe;
+import values.classAuthor;
 
 public class LibAuthor extends JFrame {
 	
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblAuthortable;
 	private JTextField txtFirstNametextField;
 	private JTextField txtLastNametextField;
 	private JTextField txtMiddleNametextField;
@@ -130,10 +143,27 @@ public class LibAuthor extends JFrame {
 		panel.add(txtCountrytextField);
 		
 		
-		JButton btnNewButton = new JButton("Save Entry");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(234, 354, 158, 32);
-		panel.add(btnNewButton);
+		JButton btnSaveButton = new JButton("Save Entry");
+		btnSaveButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				classAuthor author = new classAuthor();
+
+				classAuthorExe.setValues(author,
+						txtFirstNametextField.getText(),
+						txtLastNametextField.getText(),
+						txtMiddleNametextField.getText(),
+						txtAddresstextField.getText(),
+						txtCitytextField.getText(),
+						txtProvincetextField.getText(),
+						txtCountrytextField.getText());
+				
+				JOptionPane.showMessageDialog(null, classAuthorExe.exeInsertStatements(author));
+			}
+		});
+		btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSaveButton.setBounds(234, 354, 158, 32);
+		panel.add(btnSaveButton);
 		
 		JButton btnDiscardChanges = new JButton("Discard Changes");
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -143,12 +173,25 @@ public class LibAuthor extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 527, 403);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane);
+		
+		tblAuthortable = new JTable();
+		tblAuthortable.setFillsViewportHeight(true);
+		tblAuthortable.setColumnSelectionAllowed(true);
+		tblAuthortable.setCellSelectionEnabled(true);
+		panel_1.add(tblAuthortable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"id", "FirstName", "LastName", "MiddleName", "StreetAddress", "City", "Province", "Country"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classAuthorExe.exeReadStatements(objtableModel);
+		tblAuthortable.setModel(objtableModel);
 		
 		JLabel lblTitleLabel = new JLabel("Author Entry");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

@@ -27,7 +27,7 @@ CREATE TABLE `materials` (
   `Title` varchar(45) DEFAULT NULL,
   `Description` varchar(60) DEFAULT NULL,
   `Edition` varchar(10) DEFAULT NULL,
-  `YearOfPublication` year DEFAULT NULL,
+  `YearOfPublication` date DEFAULT NULL,
   `DatePublished` date DEFAULT NULL,
   `TypeOfMaterial` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)

@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Title` varchar(45) DEFAULT NULL,
-  `Descrption` varchar(60) DEFAULT NULL,
+  `Description` varchar(60) DEFAULT NULL,
   `Edition` varchar(10) DEFAULT NULL,
   `YearOfPublication` year DEFAULT NULL,
   `DatePublished` date DEFAULT NULL,

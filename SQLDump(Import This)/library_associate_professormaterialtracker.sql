@@ -38,7 +38,7 @@ CREATE TABLE `associate_professormaterialtracker` (
   KEY `APMProfessorId_idx` (`professorId`),
   KEY `APMSubjectId_idx` (`psubjectId`),
   KEY `APMlibrarianId_idx` (`plibririanId`),
-  CONSTRAINT `APMlibrarianId` FOREIGN KEY (`plibririanId`) REFERENCES `libririan` (`id`),
+  CONSTRAINT `APMlibrarianId` FOREIGN KEY (`plibririanId`) REFERENCES `librarian` (`id`),
   CONSTRAINT `APMmaterialId` FOREIGN KEY (`pMaterialId`) REFERENCES `materials` (`id`),
   CONSTRAINT `APMProfessorId` FOREIGN KEY (`professorId`) REFERENCES `professor` (`id`),
   CONSTRAINT `APMSubjectId` FOREIGN KEY (`psubjectId`) REFERENCES `subject` (`id`)
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-25 14:09:41
+-- Dump completed on 2020-11-28 16:12:34

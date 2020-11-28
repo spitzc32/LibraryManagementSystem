@@ -7,8 +7,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -18,15 +20,24 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import executioner.classMaterialsExe;
+import values.classMaterials;
 
 public class LibMaterial extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblMaterialtable;
 	private JTextField txtMaterialTitletextField;
 	private JTextField txtDescriptiontextField;
 	private JTextField txtEditiontextField;
 	private JTextField txtYearOfPublicationtextField;
+	private JTextField txtDatePublishedtextField;
 	private JTextField txtTypeOfMaterialtextField;
 
 	/**
@@ -91,29 +102,42 @@ public class LibMaterial extends JFrame {
 		txtEditiontextField.setBounds(121, 118, 291, 34);
 		panel.add(txtEditiontextField);
 		
-		JLabel lblYearOfPublicationLabel = new JLabel("Date of Publication");
+		JLabel lblYearOfPublicationLabel = new JLabel("Year of Publication");
 		lblYearOfPublicationLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblYearOfPublicationLabel.setBounds(10, 163, 148, 32);
+		lblYearOfPublicationLabel.setBounds(10, 166, 148, 32);
 		panel.add(lblYearOfPublicationLabel);
 		
 		txtYearOfPublicationtextField = new JTextField();
 		txtYearOfPublicationtextField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtYearOfPublicationtextField.setForeground(Color.GRAY);
+		txtYearOfPublicationtextField.setForeground(Color.BLACK);
 		txtYearOfPublicationtextField.setHorizontalAlignment(SwingConstants.CENTER);
-		txtYearOfPublicationtextField.setText("mm/dd/yyyy");
 		txtYearOfPublicationtextField.setToolTipText("");
 		txtYearOfPublicationtextField.setColumns(10);
-		txtYearOfPublicationtextField.setBounds(168, 163, 243, 34);
+		txtYearOfPublicationtextField.setBounds(168, 166, 243, 34);
 		panel.add(txtYearOfPublicationtextField);
+		
+		JLabel lblDatePublished = new JLabel("Date Published");
+		lblDatePublished.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblDatePublished.setBounds(10, 214, 148, 32);
+		panel.add(lblDatePublished);
+		
+		txtDatePublishedtextField = new JTextField();
+		txtDatePublishedtextField.setToolTipText("");
+		txtDatePublishedtextField.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDatePublishedtextField.setForeground(Color.BLACK);
+		txtDatePublishedtextField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtDatePublishedtextField.setColumns(10);
+		txtDatePublishedtextField.setBounds(168, 214, 243, 34);
+		panel.add(txtDatePublishedtextField);
 		
 		JLabel lblTypeOfMaterialLabel = new JLabel("Type of Material");
 		lblTypeOfMaterialLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblTypeOfMaterialLabel.setBounds(10, 206, 131, 32);
+		lblTypeOfMaterialLabel.setBounds(10, 261, 131, 32);
 		panel.add(lblTypeOfMaterialLabel);
 		
 		txtTypeOfMaterialtextField = new JTextField();
 		txtTypeOfMaterialtextField.setColumns(10);
-		txtTypeOfMaterialtextField.setBounds(145, 208, 267, 34);
+		txtTypeOfMaterialtextField.setBounds(145, 261, 267, 34);
 		panel.add(txtTypeOfMaterialtextField);
 		
 		JSeparator separator = new JSeparator();
@@ -121,6 +145,34 @@ public class LibMaterial extends JFrame {
 		panel.add(separator);
 		
 		JButton btnNewButton = new JButton("Save Entry");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Save statement
+				try {
+					classMaterials material = new classMaterials();
+					Date YearOfPublication = new SimpleDateFormat("yyyy").parse(txtYearOfPublicationtextField.getText());
+					java.sql.Date yop = new java.sql.Date(YearOfPublication.getTime());
+					Date DatePublished = new SimpleDateFormat("dd/MM").parse(txtDatePublishedtextField.getText());
+					java.sql.Date dp = new java.sql.Date(DatePublished.getTime());
+					
+					classMaterialsExe.setValues(material,
+							txtMaterialTitletextField.getText(),
+							txtDescriptiontextField.getText(),
+							txtEditiontextField.getText(),
+							yop,
+							dp,
+							txtTypeOfMaterialtextField.getText()
+							);
+					
+					JOptionPane.showMessageDialog(null, classMaterialsExe.exeInsertStatements(material));
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(236, 467, 158, 32);
 		panel.add(btnNewButton);
@@ -131,14 +183,22 @@ public class LibMaterial extends JFrame {
 		panel.add(btnDiscardChanges);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(459, 42, 527, 511);
+		panel_1.setBounds(459, 42, 515, 511);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		tblMaterialtable = new JTable();
+		tblMaterialtable.setFillsViewportHeight(true);
+		tblMaterialtable.setColumnSelectionAllowed(true);
+		tblMaterialtable.setCellSelectionEnabled(true);
+		panel_1.add(tblMaterialtable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"id", "Title", "Description", "Edition", "Year of Publication", "Date Published", "Type of Material"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classMaterialsExe.exeReadStatements(objtableModel);
+		tblMaterialtable.setModel(objtableModel);
 		
 		JLabel lblTitleLabel = new JLabel("Material Entry");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

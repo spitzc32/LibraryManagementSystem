@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `associate_studentmaterialtracker`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `associate_studentmaterialtracker` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `studentId` int DEFAULT '0',
-  `subjectId` int DEFAULT '0',
-  `libririanId` int DEFAULT '0',
-  `MaterialId` int DEFAULT '0',
+  `studentId` int DEFAULT NULL,
+  `subjectId` int DEFAULT NULL,
+  `libririanId` int DEFAULT NULL,
+  `MaterialId` int DEFAULT NULL,
   `dateBorrowed` date DEFAULT NULL,
   `dateReturned` date DEFAULT NULL,
   `isDue` tinyint DEFAULT NULL,
@@ -38,11 +38,11 @@ CREATE TABLE `associate_studentmaterialtracker` (
   KEY `ASMstudentId_idx` (`studentId`),
   KEY `ASMlibrarianId_idx` (`libririanId`),
   KEY `ASMMaterialId_idx` (`MaterialId`),
-  CONSTRAINT `ASMlibrarianId` FOREIGN KEY (`libririanId`) REFERENCES `libririan` (`id`),
+  CONSTRAINT `ASMlibrarianId` FOREIGN KEY (`libririanId`) REFERENCES `librarian` (`id`),
   CONSTRAINT `ASMMaterialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`),
   CONSTRAINT `ASMstudentId` FOREIGN KEY (`studentId`) REFERENCES `student` (`id`),
   CONSTRAINT `ASMsubjectId` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,6 +51,7 @@ CREATE TABLE `associate_studentmaterialtracker` (
 
 LOCK TABLES `associate_studentmaterialtracker` WRITE;
 /*!40000 ALTER TABLE `associate_studentmaterialtracker` DISABLE KEYS */;
+INSERT INTO `associate_studentmaterialtracker` VALUES (5,1,1,1,1,'2020-02-02','2020-02-02',0,0,'2020-02-02');
 /*!40000 ALTER TABLE `associate_studentmaterialtracker` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-25 14:09:41
+-- Dump completed on 2020-11-28 16:12:34

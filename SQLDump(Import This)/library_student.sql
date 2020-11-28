@@ -36,7 +36,7 @@ CREATE TABLE `student` (
   `isGraduated` tinyint DEFAULT NULL,
   `isEnrolled` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'jayra','jahd','dhss','dhshdks','2000-12-12','20 somethinf','none','none','BSCS',0,1);
+INSERT INTO `student` VALUES (1,'jayra','jahd','dhss','dhshdks','2000-12-12','20 somethinf','none','none','BSCS',0,1),(2,'jayradbejsdb','ndksndkns','nsdlsndlns','dhdowd@dbosldbow','2000-12-12','wndoeboq','ndowen','dbjbwea','bdjiqb',0,1);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-25 14:09:40
+-- Dump completed on 2020-11-28 16:12:34

@@ -2,9 +2,7 @@ package executioner;
 
 import java.sql.Date;
 import values.classMaterials;
-import values.classStudent;
 import SQLCrudStatements.classMaterialsCRUD;
-import SQLCrudStatements.classStudentCRUD;
 
 import javax.swing.table.DefaultTableModel;
 

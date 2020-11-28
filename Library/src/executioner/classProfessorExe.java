@@ -54,10 +54,10 @@ public class classProfessorExe {
 								professor.funcgetCity(),
 								professor.funcgetProvince(),
 								professor.funcgetCourse(),
-								professor.funcgetIsWorking(),
+								professor.funcgetIsWorking() == 1 ? "Yes" : "No",
 								professor.funcgetShift(),
-								professor.funcgetIsActive(),
-								professor.funcgetIsResigned(),
+								professor.funcgetIsActive() == 1 ? "Yes" : "No",
+								professor.funcgetIsResigned() == 1 ? "Yes" : "No",
 							   };
 			table.addRow(objList);
 		}

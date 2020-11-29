@@ -4,24 +4,36 @@ import java.awt.BorderLayout;
 import java.awt.Choice;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
+import javax.swing.table.DefaultTableModel;
 
+import executioner.classLibrarianExe;
+import values.classLibrarian;
+
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.ButtonGroup;
 public class LibLibrarian extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblLibrariantable;
 	private JTextField txtFirstNametextField;
 	private JTextField txtLastNametextField;
 	private JTextField txtMiddleNametextField;
@@ -30,7 +42,7 @@ public class LibLibrarian extends JFrame {
 	private JTextField txtAddresstextField;
 	private JTextField txtCitytextField;
 	private JTextField txtProvincetextField;
-	private JTextField txtShifttextField;
+	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -160,22 +172,21 @@ public class LibLibrarian extends JFrame {
 		lblShiftLabel.setBounds(46, 389, 98, 32);
 		panel.add(lblShiftLabel);
 		
-		Choice choice = new Choice();
-		choice.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		choice.setBounds(110, 389, 191, 43);
-		panel.add(choice);
+		Choice lblShiftChoice = new Choice();
+		lblShiftChoice.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblShiftChoice.setBounds(151, 389, 191, 43);
+		panel.add(lblShiftChoice);
 		
-        choice.addItem("Day");
-        choice.addItem("Noon");
-        choice.addItem("Night");
+		lblShiftChoice.addItem("Day");
+		lblShiftChoice.addItem("Noon");
+		lblShiftChoice.addItem("Night");
+
 
 		JCheckBox chckbxisActiveCheckBox = new JCheckBox("Are you a still Active?");
 		chckbxisActiveCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxisActiveCheckBox.setBounds(115, 434, 171, 21);
 		panel.add(chckbxisActiveCheckBox);
 
-	
-		
 		JRadioButton rdbtnWorkingButton = new JRadioButton("currently working?");
 		buttonGroup.add(rdbtnWorkingButton);
 		rdbtnWorkingButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -191,11 +202,53 @@ public class LibLibrarian extends JFrame {
 	
 	
 		JButton btnNewButton = new JButton("Save Entry");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Save statement
+				try {
+					classLibrarian librarian = new classLibrarian();
+					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+					java.sql.Date sql = new java.sql.Date(date.getTime());
+					int isWorking = rdbtnWorkingButton.isSelected() ? 1 : 0;
+					String Shift = lblShiftChoice.getItem(lblShiftChoice.getSelectedIndex());
+					int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
+					int isResigned = rdbtnResignedButton.isSelected() ? 1 : 0;
+					
+					classLibrarianExe.setValues(librarian,
+							txtFirstNametextField.getText(),
+							txtLastNametextField.getText(),
+							txtMiddleNametextField.getText(),
+							txtWebmailtextField.getText(),
+							sql,
+							txtAddresstextField.getText(),
+							txtCitytextField.getText(),
+							txtProvincetextField.getText(),
+							isWorking,
+							Shift,
+							isActive,
+							isResigned);
+					
+					
+					
+					JOptionPane.showMessageDialog(null, classLibrarianExe.exeInsertStatements(librarian));
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(242, 493, 158, 32);
 		panel.add(btnNewButton);
 		
 		JButton btnDiscardChanges = new JButton("Discard Changes");
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDiscardChanges.setBounds(30, 493, 158, 32);
 		panel.add(btnDiscardChanges);
@@ -206,11 +259,23 @@ public class LibLibrarian extends JFrame {
 		panel_1.setBounds(460, 42, 527, 535);
 		contentPane.add(panel_1);
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane);
+		
+		tblLibrariantable = new JTable();
+		tblLibrariantable.setFillsViewportHeight(true);
+		tblLibrariantable.setColumnSelectionAllowed(true);
+		tblLibrariantable.setCellSelectionEnabled(true);
+		panel_1.add(tblLibrariantable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"id", "FirstName", "LastName", "MiddleName", "Webmail", "DateOfBirth", "Address", "City", "Province", "isWorking", "Shift", "isActive", "isResigned"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classLibrarianExe.exeReadStatements(objtableModel);
+		tblLibrariantable.setModel(objtableModel);
 
 // title 
 		

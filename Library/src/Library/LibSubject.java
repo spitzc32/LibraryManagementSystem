@@ -1,22 +1,33 @@
 package Library;
 
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import executioner.classSubjectExe;
+import values.classSubject;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 
 public class LibSubject extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tblSubjecttable;
 	private JTextField txtTitle1textField;
 	private JTextField txtDescriptiontextField;
 	private JTextField txtCodetextField;
@@ -41,6 +52,7 @@ public class LibSubject extends JFrame {
 	 * Create the frame.
 	 */
 	public LibSubject() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1019, 356);
 		contentPane = new JPanel();
@@ -48,10 +60,14 @@ public class LibSubject extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+//first panel in 
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 42, 439, 262);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+// subject title 
 		
 		JLabel lblTitle1Label = new JLabel("Title:");
 		lblTitle1Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -84,10 +100,26 @@ public class LibSubject extends JFrame {
 		txtCodetextField.setBounds(121, 111, 291, 34);
 		panel.add(txtCodetextField);
 		
-		JButton btnNewButton = new JButton("Save Entry");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(242, 190, 158, 32);
-		panel.add(btnNewButton);
+// save entry button
+		
+		JButton btnSaveButton = new JButton("Save Entry");
+		btnSaveButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				classSubject subject = new classSubject();
+
+				classSubjectExe.setValues(subject,
+						txtTitle1textField.getText(),
+						txtDescriptiontextField.getText(),
+						txtCodetextField.getText());
+				
+				
+				JOptionPane.showMessageDialog(null, classSubjectExe.exeInsertStatements(subject));
+			}
+		});
+		btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSaveButton.setBounds(242, 190, 158, 32);
+		panel.add(btnSaveButton);
 		
 		JButton btnDiscardChanges = new JButton("Discard Changes");
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -97,12 +129,25 @@ public class LibSubject extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 527, 262);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane);
+		
+		tblSubjecttable = new JTable();
+		tblSubjecttable.setFillsViewportHeight(true);
+		tblSubjecttable.setColumnSelectionAllowed(true);
+		tblSubjecttable.setCellSelectionEnabled(true);
+		panel_1.add(tblSubjecttable);
+		
+		// Read Statement
+		String[] arrColumnNames = {"Title", "Description", "Code"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classSubjectExe.exeReadStatements(objtableModel);
+		tblSubjecttable.setModel(objtableModel);
 		
 		JLabel lblTitleLabel = new JLabel("Subject Entry");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

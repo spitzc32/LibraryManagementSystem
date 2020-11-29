@@ -211,6 +211,9 @@ public class LibStudent extends JFrame {
 								isEnrolled);
 						
 						JOptionPane.showMessageDialog(null, classStudentExe.exeInsertStatements(student));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Please enter Required Credentials");
 					}

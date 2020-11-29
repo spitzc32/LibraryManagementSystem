@@ -53,6 +53,7 @@ public class LibHome extends JFrame {
 		panelStudentPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibStudent objLib = new LibStudent();
 				objLib.setVisible(true);
 			}
@@ -70,6 +71,7 @@ public class LibHome extends JFrame {
 		panelProfessorPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibProfessor objLib = new LibProfessor();
 				objLib.setVisible(true);
 			}
@@ -92,6 +94,7 @@ public class LibHome extends JFrame {
 		lblStudentLabel_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibLibrarian objLib = new LibLibrarian();
 				objLib.setVisible(true);
 			}
@@ -104,6 +107,7 @@ public class LibHome extends JFrame {
 		panelAuthorPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibAuthor objLib = new LibAuthor();
 				objLib.setVisible(true);
 			}
@@ -121,6 +125,7 @@ public class LibHome extends JFrame {
 		panelMaterialsPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibMaterial objLib = new LibMaterial();
 				objLib.setVisible(true);
 			}
@@ -138,6 +143,7 @@ public class LibHome extends JFrame {
 		panelBSFormPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibStudentBookForm objLib = new LibStudentBookForm();
 				objLib.setVisible(true);
 			}
@@ -160,6 +166,7 @@ public class LibHome extends JFrame {
 		panelBPFormPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibProfessorBookForm objLib = new LibProfessorBookForm();
 				objLib.setVisible(true);
 			}
@@ -182,6 +189,7 @@ public class LibHome extends JFrame {
 		panelMaterialReviewPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibMaterialReview objLib = new LibMaterialReview();
 				objLib.setVisible(true);
 			}
@@ -199,6 +207,7 @@ public class LibHome extends JFrame {
 		panelSubjectPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
 				LibSubject objLib = new LibSubject();
 				objLib.setVisible(true);
 			}

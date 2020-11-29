@@ -160,6 +160,9 @@ public class LibAuthor extends JFrame {
 								txtCountrytextField.getText());
 						
 						JOptionPane.showMessageDialog(null, classAuthorExe.exeInsertStatements(author));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Input Required Fields");
 					}

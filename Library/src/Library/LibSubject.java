@@ -69,7 +69,7 @@ public class LibSubject extends JFrame {
 		
 // subject title 
 		
-		JLabel lblTitle1Label = new JLabel("Title:");
+		JLabel lblTitle1Label = new JLabel("Title*:");
 		lblTitle1Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblTitle1Label.setBounds(10, 29, 98, 32);
 		panel.add(lblTitle1Label);
@@ -80,7 +80,7 @@ public class LibSubject extends JFrame {
 		panel.add(txtTitle1textField);
 
 		
-		JLabel lblDescriptionLabel = new JLabel("Description:");
+		JLabel lblDescriptionLabel = new JLabel("Description*:");
 		lblDescriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblDescriptionLabel.setBounds(10, 71, 98, 32);
 		panel.add(lblDescriptionLabel);
@@ -90,7 +90,7 @@ public class LibSubject extends JFrame {
 		txtDescriptiontextField.setBounds(121, 69, 291, 34);
 		panel.add(txtDescriptiontextField);
 		
-		JLabel lblCodeLabel = new JLabel("Code:");
+		JLabel lblCodeLabel = new JLabel("Code*:");
 		lblCodeLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCodeLabel.setBounds(10, 113, 98, 32);
 		panel.add(lblCodeLabel);
@@ -107,14 +107,20 @@ public class LibSubject extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				classSubject subject = new classSubject();
-
-				classSubjectExe.setValues(subject,
-						txtTitle1textField.getText(),
-						txtDescriptiontextField.getText(),
-						txtCodetextField.getText());
-				
-				
-				JOptionPane.showMessageDialog(null, classSubjectExe.exeInsertStatements(subject));
+				if (!txtTitle1textField.getText().equals("")) {
+					classSubjectExe.setValues(subject,
+							txtTitle1textField.getText(),
+							txtDescriptiontextField.getText(),
+							txtCodetextField.getText());
+					
+					
+					JOptionPane.showMessageDialog(null, classSubjectExe.exeInsertStatements(subject));
+					setVisible(false);
+					LibHome frame = new LibHome();
+					frame.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Please Enter the required Fields");
+				}
 			}
 		});
 		btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));

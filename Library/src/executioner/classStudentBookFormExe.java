@@ -67,11 +67,17 @@ public class classStudentBookFormExe {
 		ArrayList<classAssociate_StudentMaterialTracker> students =  classAssociate_StudentMaterialTrackerCRUD.funcReadAssociate_StudentMaterialTrackerObj(); 
 		
 		for (classAssociate_StudentMaterialTracker student : students) {
+			classObject subjectId = classAssociate_StudentMaterialTrackerCRUD.funcRetrieveDisplayObjectASMTObj("subject", student.funcgetSubjectId());
+			classEntity librarianId = classAssociate_StudentMaterialTrackerCRUD.funcRetrieveDisplayEntityASMTObj("librarian", student.funcgetlibririanId());
+			classEntity studenttId = classAssociate_StudentMaterialTrackerCRUD.funcRetrieveDisplayEntityASMTObj("student", student.funcgetStudentId());
+			classObject materialId = classAssociate_StudentMaterialTrackerCRUD.funcRetrieveDisplayObjectASMTObj("materials", student.funcgetMaterialId());
+			
 			Object objList[] = {
 								student.funcgetId(),
-								student.funcgetSubjectId(), 
-								student.funcgetlibririanId(),
-								student.funcgetMaterialId(),
+								subjectId.funcgetTitle(), 
+								librarianId.funcgetLastName() + ", " + librarianId.funcgetFirstName(),
+								studenttId.funcgetLastName() + ", " + studenttId.funcgetFirstName(),
+								materialId.funcgetTitle(),
 								student.funcgetDateBorrowed(),
 								student.funcgetDateReturned(),
 								student.funcgetIsDue() == 1 ? "Yes" : "No",

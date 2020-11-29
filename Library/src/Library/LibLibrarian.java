@@ -167,7 +167,7 @@ public class LibLibrarian extends JFrame {
 		panel.add(separator);
 		
 		
-		JLabel lblShiftLabel = new JLabel("Shift:");
+		JLabel lblShiftLabel = new JLabel("Shift*:");
 		lblShiftLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblShiftLabel.setBounds(46, 389, 98, 32);
 		panel.add(lblShiftLabel);
@@ -207,32 +207,35 @@ public class LibLibrarian extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//Save statement
 				try {
-					classLibrarian librarian = new classLibrarian();
-					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
-					java.sql.Date sql = new java.sql.Date(date.getTime());
-					int isWorking = rdbtnWorkingButton.isSelected() ? 1 : 0;
-					String Shift = lblShiftChoice.getItem(lblShiftChoice.getSelectedIndex());
-					int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
-					int isResigned = rdbtnResignedButton.isSelected() ? 1 : 0;
-					
-					classLibrarianExe.setValues(librarian,
-							txtFirstNametextField.getText(),
-							txtLastNametextField.getText(),
-							txtMiddleNametextField.getText(),
-							txtWebmailtextField.getText(),
-							sql,
-							txtAddresstextField.getText(),
-							txtCitytextField.getText(),
-							txtProvincetextField.getText(),
-							isWorking,
-							Shift,
-							isActive,
-							isResigned);
-					
-					
-					
-					JOptionPane.showMessageDialog(null, classLibrarianExe.exeInsertStatements(librarian));
-					
+					if (!txtDateOfBirthtextField.getText().equals("")) {
+						classLibrarian librarian = new classLibrarian();
+						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+						java.sql.Date sql = new java.sql.Date(date.getTime());
+						int isWorking = rdbtnWorkingButton.isSelected() ? 1 : 0;
+						String Shift = lblShiftChoice.getItem(lblShiftChoice.getSelectedIndex());
+						int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
+						int isResigned = rdbtnResignedButton.isSelected() ? 1 : 0;
+						
+						classLibrarianExe.setValues(librarian,
+								txtFirstNametextField.getText(),
+								txtLastNametextField.getText(),
+								txtMiddleNametextField.getText(),
+								txtWebmailtextField.getText(),
+								sql,
+								txtAddresstextField.getText(),
+								txtCitytextField.getText(),
+								txtProvincetextField.getText(),
+								isWorking,
+								Shift,
+								isActive,
+								isResigned);
+						
+						
+						
+						JOptionPane.showMessageDialog(null, classLibrarianExe.exeInsertStatements(librarian));
+					} else {
+						JOptionPane.showMessageDialog(null, "Please Enter Required Credentials");
+					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

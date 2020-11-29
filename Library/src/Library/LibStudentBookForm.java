@@ -75,28 +75,28 @@ public class LibStudentBookForm extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblStudentIdLabel = new JLabel("Student");
+		JLabel lblStudentIdLabel = new JLabel("Student*");
 		lblStudentIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblStudentIdLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblStudentIdLabel);
 
-		JLabel lblSubjectIdLabel = new JLabel("Subject");
+		JLabel lblSubjectIdLabel = new JLabel("Subject*");
 		lblSubjectIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblSubjectIdLabel.setBounds(10, 72, 98, 32);
 		panel.add(lblSubjectIdLabel);
 
-		JLabel lblLibrarianIdLabel = new JLabel("Librarian");
+		JLabel lblLibrarianIdLabel = new JLabel("Librarian*");
 		lblLibrarianIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblLibrarianIdLabel.setBounds(10, 120, 98, 32);
 		panel.add(lblLibrarianIdLabel);
 
-		JLabel lblMaterialIdLabel = new JLabel("Materials");
+		JLabel lblMaterialIdLabel = new JLabel("Materials*");
 		lblMaterialIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMaterialIdLabel.setBounds(10, 163, 98, 32);
 		panel.add(lblMaterialIdLabel);
 
-		JLabel lblAssignedDateReturnLabel = new JLabel("Assigned Return Date");
-		lblAssignedDateReturnLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblAssignedDateReturnLabel = new JLabel("Assigned Date*");
+		lblAssignedDateReturnLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAssignedDateReturnLabel.setBounds(10, 397, 98, 32);
 		panel.add(lblAssignedDateReturnLabel);
 
@@ -141,8 +141,8 @@ public class LibStudentBookForm extends JFrame {
 		panel.add(cmbMaterialscomboBox);
 		classStudentBookFormExe.funcRetrieveObjectVal("materials", cmbMaterialscomboBox);
 
-		JLabel lblDateBorrowed = new JLabel("Date Borrowed");
-		lblDateBorrowed.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblDateBorrowed = new JLabel("Date Borrowed*");
+		lblDateBorrowed.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDateBorrowed.setBounds(10, 213, 98, 32);
 		panel.add(lblDateBorrowed);
 
@@ -151,8 +151,8 @@ public class LibStudentBookForm extends JFrame {
 		txtDateBorrowedtextField.setBounds(121, 212, 291, 34);
 		panel.add(txtDateBorrowedtextField);
 
-		JLabel lblDateReturned = new JLabel("Date Returned");
-		lblDateReturned.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblDateReturned = new JLabel("Date Returned*");
+		lblDateReturned.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDateReturned.setBounds(10, 265, 98, 32);
 		panel.add(lblDateReturned);
 
@@ -167,38 +167,42 @@ public class LibStudentBookForm extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				try {
-					classAssociate_StudentMaterialTracker student = new classAssociate_StudentMaterialTracker();
-					Object studentId = cmbStudentcomboBox.getSelectedItem();
-					Object subjectId = cmbSubjectcomboBox.getSelectedItem();
-					Object librarianId = cmbLibrariancomboBox.getSelectedItem();
-					Object materialId = cmbMaterialscomboBox.getSelectedItem();
-					
-					int isDue = chckbxisDueCheckBox.isSelected() ? 1 : 0;
-					int isReturned = chckbxisReturnedCheckBox.isSelected() ? 1 : 0;
-					
-					Date dateBorrowed = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateBorrowedtextField.getText());
-					java.sql.Date sqldateBorrowed = new java.sql.Date(dateBorrowed.getTime());
-					
-					Date dateReturned = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
-					java.sql.Date sqldateReturned = new java.sql.Date(dateReturned.getTime());
-					
-					Date assignedDateReturn = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
-					java.sql.Date sqlassignedDateReturn = new java.sql.Date(assignedDateReturn.getTime());
-					
-					
-					classStudentBookFormExe.setValues(student,
-							((classComboItem)studentId).getValue(),
-							((classComboItem)studentId).getValue(),
-							((classComboItem)studentId).getValue(),
-							((classComboItem)studentId).getValue(),
-							sqldateBorrowed,
-							sqldateReturned,
-							isDue,
-							isReturned,
-							sqlassignedDateReturn
-							);
-					
-					JOptionPane.showMessageDialog(null, classStudentBookFormExe.exeInsertStatements(student));
+					if (!txtDateBorrowedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("")) {
+						classAssociate_StudentMaterialTracker student = new classAssociate_StudentMaterialTracker();
+						Object studentId = cmbStudentcomboBox.getSelectedItem();
+						Object subjectId = cmbSubjectcomboBox.getSelectedItem();
+						Object librarianId = cmbLibrariancomboBox.getSelectedItem();
+						Object materialId = cmbMaterialscomboBox.getSelectedItem();
+						
+						int isDue = chckbxisDueCheckBox.isSelected() ? 1 : 0;
+						int isReturned = chckbxisReturnedCheckBox.isSelected() ? 1 : 0;
+						
+						Date dateBorrowed = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateBorrowedtextField.getText());
+						java.sql.Date sqldateBorrowed = new java.sql.Date(dateBorrowed.getTime());
+						
+						Date dateReturned = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
+						java.sql.Date sqldateReturned = new java.sql.Date(dateReturned.getTime());
+						
+						Date assignedDateReturn = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
+						java.sql.Date sqlassignedDateReturn = new java.sql.Date(assignedDateReturn.getTime());
+						
+						
+						classStudentBookFormExe.setValues(student,
+								((classComboItem)studentId).getValue(),
+								((classComboItem)studentId).getValue(),
+								((classComboItem)studentId).getValue(),
+								((classComboItem)studentId).getValue(),
+								sqldateBorrowed,
+								sqldateReturned,
+								isDue,
+								isReturned,
+								sqlassignedDateReturn
+								);
+						
+						JOptionPane.showMessageDialog(null, classStudentBookFormExe.exeInsertStatements(student));
+					} else {
+						JOptionPane.showMessageDialog(null, "Please enter Required Fields");
+					}
 				}  catch (Exception e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();

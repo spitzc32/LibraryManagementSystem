@@ -6,6 +6,14 @@ This is a Data Entry Project for Object Oriented Programming based on some parts
 ## How it works
 The Library Management System currently works as a basic Data Entry Module that creates and reads each data for transparency as per the requirements specified in the Project.txt given by our Professor.
 
+## Table of Contents:
+1. Setup
+1. ER Diagram
+1. Packages
+1. Cloning This Repository
+1. Update or Make changes to this Repository
+
+
 # Setup
 ## Dependencies
 **Database Used:** MySQL

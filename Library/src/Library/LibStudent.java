@@ -79,7 +79,7 @@ public class LibStudent extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblFirstNameLabel = new JLabel("First Name");
+		JLabel lblFirstNameLabel = new JLabel("First Name*");
 		lblFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFirstNameLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblFirstNameLabel);
@@ -89,7 +89,7 @@ public class LibStudent extends JFrame {
 		panel.add(txtFirstNametextField);
 		txtFirstNametextField.setColumns(10);
 		
-		JLabel lblLastNameLabel = new JLabel("Last Name");
+		JLabel lblLastNameLabel = new JLabel("Last Name*");
 		lblLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblLastNameLabel.setBounds(10, 71, 98, 32);
 		panel.add(lblLastNameLabel);
@@ -109,7 +109,7 @@ public class LibStudent extends JFrame {
 		txtMiddleNametextField.setBounds(121, 111, 291, 34);
 		panel.add(txtMiddleNametextField);
 		
-		JLabel lblWebmailLabel = new JLabel("Webmail");
+		JLabel lblWebmailLabel = new JLabel("Webmail*");
 		lblWebmailLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblWebmailLabel.setBounds(10, 157, 98, 32);
 		panel.add(lblWebmailLabel);
@@ -119,7 +119,7 @@ public class LibStudent extends JFrame {
 		txtWebmailtextField.setBounds(121, 155, 291, 34);
 		panel.add(txtWebmailtextField);
 		
-		JLabel lblDateOfBirthLabel = new JLabel("Date Of Birth");
+		JLabel lblDateOfBirthLabel = new JLabel("Birth Date*");
 		lblDateOfBirthLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDateOfBirthLabel.setBounds(10, 201, 98, 32);
 		panel.add(lblDateOfBirthLabel);
@@ -129,7 +129,7 @@ public class LibStudent extends JFrame {
 		txtDateOfBirthtextField.setBounds(121, 199, 291, 34);
 		panel.add(txtDateOfBirthtextField);
 		
-		JLabel lblAddressLabel = new JLabel("Address");
+		JLabel lblAddressLabel = new JLabel("Address*");
 		lblAddressLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblAddressLabel.setBounds(10, 289, 98, 32);
 		panel.add(lblAddressLabel);
@@ -139,7 +139,7 @@ public class LibStudent extends JFrame {
 		txtAddresstextField.setBounds(121, 287, 291, 34);
 		panel.add(txtAddresstextField);
 		
-		JLabel lblCityLabel = new JLabel("City");
+		JLabel lblCityLabel = new JLabel("City*");
 		lblCityLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCityLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCityLabel.setBounds(10, 354, 98, 32);
@@ -160,7 +160,7 @@ public class LibStudent extends JFrame {
 		txtProvincetextField.setBounds(86, 396, 146, 34);
 		panel.add(txtProvincetextField);
 		
-		JLabel lblCourse = new JLabel("Course");
+		JLabel lblCourse = new JLabel("Course*");
 		lblCourse.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCourse.setBounds(10, 245, 98, 32);
 		panel.add(lblCourse);
@@ -190,27 +190,30 @@ public class LibStudent extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//Save statement
 				try {
-					classStudent student = new classStudent();
-					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
-					java.sql.Date sql = new java.sql.Date(date.getTime());
-					int isGraduated = chckbxisGraduatedCheckBox.isSelected() ? 1 : 0;
-					int isEnrolled = chckbxisEnrolledCheckBox.isSelected() ? 1 : 0;
-					
-					classStudentExe.setValues(student,
-							txtFirstNametextField.getText(),
-							txtLastNametextField.getText(),
-							txtMiddleNametextField.getText(),
-							txtWebmailtextField.getText(),
-							sql,
-							txtAddresstextField.getText(),
-							txtCitytextField.getText(),
-							txtProvincetextField.getText(),
-							txtCoursetextField.getText(),
-							isGraduated,
-							isEnrolled);
-					
-					JOptionPane.showMessageDialog(null, classStudentExe.exeInsertStatements(student));
-					
+					if (!txtDateOfBirthtextField.getText().equals("")) {
+						classStudent student = new classStudent();
+						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+						java.sql.Date sql = new java.sql.Date(date.getTime());
+						int isGraduated = chckbxisGraduatedCheckBox.isSelected() ? 1 : 0;
+						int isEnrolled = chckbxisEnrolledCheckBox.isSelected() ? 1 : 0;
+						
+						classStudentExe.setValues(student,
+								txtFirstNametextField.getText(),
+								txtLastNametextField.getText(),
+								txtMiddleNametextField.getText(),
+								txtWebmailtextField.getText(),
+								sql,
+								txtAddresstextField.getText(),
+								txtCitytextField.getText(),
+								txtProvincetextField.getText(),
+								txtCoursetextField.getText(),
+								isGraduated,
+								isEnrolled);
+						
+						JOptionPane.showMessageDialog(null, classStudentExe.exeInsertStatements(student));
+					} else {
+						JOptionPane.showMessageDialog(null, "Please enter Required Credentials");
+					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

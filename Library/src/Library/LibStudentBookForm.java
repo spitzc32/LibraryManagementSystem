@@ -200,6 +200,9 @@ public class LibStudentBookForm extends JFrame {
 								);
 						
 						JOptionPane.showMessageDialog(null, classStudentBookFormExe.exeInsertStatements(student));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Please enter Required Fields");
 					}

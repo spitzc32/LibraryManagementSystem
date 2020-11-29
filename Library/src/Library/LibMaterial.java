@@ -174,6 +174,9 @@ public class LibMaterial extends JFrame {
 								);
 						
 						JOptionPane.showMessageDialog(null, classMaterialsExe.exeInsertStatements(material));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Please Fill up all required fields.");
 					}

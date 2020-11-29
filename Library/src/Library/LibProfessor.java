@@ -232,6 +232,9 @@ public class LibProfessor extends JFrame {
 								isResigned);
 						
 						JOptionPane.showMessageDialog(null, classProfessorExe.exeInsertStatements(professor));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Enter Required Fields");
 					}

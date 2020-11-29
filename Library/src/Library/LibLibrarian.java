@@ -230,9 +230,10 @@ public class LibLibrarian extends JFrame {
 								isActive,
 								isResigned);
 						
-						
-						
 						JOptionPane.showMessageDialog(null, classLibrarianExe.exeInsertStatements(librarian));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Please Enter Required Credentials");
 					}

@@ -108,7 +108,7 @@ public class LibProfessor extends JFrame {
 		chckbxisResignedCheckBox_1.setBounds(58, 431, 135, 21);
 		panel.add(chckbxisResignedCheckBox_1);
 		
-		JLabel lblFirstNameLabel = new JLabel("First Name");
+		JLabel lblFirstNameLabel = new JLabel("First Name *");
 		lblFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFirstNameLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblFirstNameLabel);
@@ -118,7 +118,7 @@ public class LibProfessor extends JFrame {
 		panel.add(txtFirstNametextField);
 		txtFirstNametextField.setColumns(10);
 		
-		JLabel lblLastNameLabel = new JLabel("Last Name");
+		JLabel lblLastNameLabel = new JLabel("Last Name *");
 		lblLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblLastNameLabel.setBounds(10, 71, 98, 32);
 		panel.add(lblLastNameLabel);
@@ -138,7 +138,7 @@ public class LibProfessor extends JFrame {
 		txtMiddleNametextField.setBounds(121, 111, 291, 34);
 		panel.add(txtMiddleNametextField);
 		
-		JLabel lblWebmailLabel = new JLabel("Webmail");
+		JLabel lblWebmailLabel = new JLabel("Webmail *");
 		lblWebmailLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblWebmailLabel.setBounds(10, 157, 98, 32);
 		panel.add(lblWebmailLabel);
@@ -148,7 +148,7 @@ public class LibProfessor extends JFrame {
 		txtWebmailtextField.setBounds(121, 155, 291, 34);
 		panel.add(txtWebmailtextField);
 		
-		JLabel lblDateOfBirthLabel = new JLabel("Date Of Birth");
+		JLabel lblDateOfBirthLabel = new JLabel("Birth Date *");
 		lblDateOfBirthLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDateOfBirthLabel.setBounds(10, 201, 98, 32);
 		panel.add(lblDateOfBirthLabel);
@@ -158,7 +158,7 @@ public class LibProfessor extends JFrame {
 		txtDateOfBirthtextField.setBounds(121, 199, 291, 34);
 		panel.add(txtDateOfBirthtextField);
 		
-		JLabel lblAddressLabel = new JLabel("Address");
+		JLabel lblAddressLabel = new JLabel("Address *");
 		lblAddressLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblAddressLabel.setBounds(10, 289, 98, 32);
 		panel.add(lblAddressLabel);
@@ -168,7 +168,7 @@ public class LibProfessor extends JFrame {
 		txtAddresstextField.setBounds(121, 287, 291, 34);
 		panel.add(txtAddresstextField);
 		
-		JLabel lblCityLabel = new JLabel("City");
+		JLabel lblCityLabel = new JLabel("City *");
 		lblCityLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCityLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCityLabel.setBounds(10, 338, 98, 32);
@@ -189,7 +189,7 @@ public class LibProfessor extends JFrame {
 		txtProvincetextField.setBounds(287, 340, 125, 30);
 		panel.add(txtProvincetextField);
 		
-		JLabel lblCourse = new JLabel("Course");
+		JLabel lblCourse = new JLabel("Course *");
 		lblCourse.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCourse.setBounds(10, 245, 98, 32);
 		panel.add(lblCourse);
@@ -208,30 +208,33 @@ public class LibProfessor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					classProfessor professor = new classProfessor();
-					Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
-					java.sql.Date sql = new java.sql.Date(date.getTime());
-					int isWorking = chckbxisWorkingCheckBox.isSelected() ? 1 : 0;
-					int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
-					int isResigned = chckbxisResignedCheckBox_1.isSelected() ? 1 : 0;
-					
-					classProfessorExe.setValues(professor,
-							txtFirstNametextField.getText(),
-							txtLastNametextField.getText(),
-							txtMiddleNametextField.getText(),
-							txtWebmailtextField.getText(),
-							sql,
-							txtAddresstextField.getText(),
-							txtCitytextField.getText(),
-							txtProvincetextField.getText(),
-							txtCoursetextField.getText(),
-							isWorking,
-							Shift,
-							isActive,
-							isResigned);
-					
-					JOptionPane.showMessageDialog(null, classProfessorExe.exeInsertStatements(professor));
-					
+					if (!txtDateOfBirthtextField.getText().equals("")) {
+						classProfessor professor = new classProfessor();
+						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
+						java.sql.Date sql = new java.sql.Date(date.getTime());
+						int isWorking = chckbxisWorkingCheckBox.isSelected() ? 1 : 0;
+						int isActive = chckbxisActiveCheckBox.isSelected() ? 1 : 0;
+						int isResigned = chckbxisResignedCheckBox_1.isSelected() ? 1 : 0;
+						
+						classProfessorExe.setValues(professor,
+								txtFirstNametextField.getText(),
+								txtLastNametextField.getText(),
+								txtMiddleNametextField.getText(),
+								txtWebmailtextField.getText(),
+								sql,
+								txtAddresstextField.getText(),
+								txtCitytextField.getText(),
+								txtProvincetextField.getText(),
+								txtCoursetextField.getText(),
+								isWorking,
+								Shift,
+								isActive,
+								isResigned);
+						
+						JOptionPane.showMessageDialog(null, classProfessorExe.exeInsertStatements(professor));
+					} else {
+						JOptionPane.showMessageDialog(null, "Enter Required Fields");
+					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import executioner.classStudentBookFormExe;
 import executioner.classStudentExe;
@@ -223,6 +224,12 @@ public class LibStudentBookForm extends JFrame {
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		panel_1.add(table);
+		
+		String[] arrColumnNames = {"id", "Subject", "Librarian", "Student", "Material", "DateBorrowed", "DateReturned", "is Due?", "Returned?", "AssignedDateReturn"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classStudentExe.exeReadStatements(objtableModel);
+		table.setModel(objtableModel);
 
 		JLabel lblTitleLabel = new JLabel("Student Book Form");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

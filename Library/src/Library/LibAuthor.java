@@ -71,7 +71,7 @@ public class LibAuthor extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblFirstNameLabel = new JLabel("First Name");
+		JLabel lblFirstNameLabel = new JLabel("First Name*");
 		lblFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFirstNameLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblFirstNameLabel);
@@ -81,7 +81,7 @@ public class LibAuthor extends JFrame {
 		panel.add(txtFirstNametextField);
 		txtFirstNametextField.setColumns(10);
 		
-		JLabel lblLastNameLabel = new JLabel("Last Name");
+		JLabel lblLastNameLabel = new JLabel("Last Name*");
 		lblLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblLastNameLabel.setBounds(10, 71, 98, 32);
 		panel.add(lblLastNameLabel);
@@ -101,7 +101,7 @@ public class LibAuthor extends JFrame {
 		txtMiddleNametextField.setBounds(121, 111, 291, 34);
 		panel.add(txtMiddleNametextField);
 		
-		JLabel lblAddressLabel = new JLabel("Address");
+		JLabel lblAddressLabel = new JLabel("Address*");
 		lblAddressLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblAddressLabel.setBounds(10, 155, 98, 32);
 		panel.add(lblAddressLabel);
@@ -111,7 +111,7 @@ public class LibAuthor extends JFrame {
 		txtAddresstextField.setBounds(121, 155, 291, 34);
 		panel.add(txtAddresstextField);
 		
-		JLabel lblCityLabel = new JLabel("City");
+		JLabel lblCityLabel = new JLabel("City*");
 		lblCityLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCityLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCityLabel.setBounds(10, 201, 98, 32);
@@ -132,7 +132,7 @@ public class LibAuthor extends JFrame {
 		txtProvincetextField.setBounds(121, 243, 291, 34);
 		panel.add(txtProvincetextField);
 		
-		JLabel lblCountryLabel = new JLabel("Country");
+		JLabel lblCountryLabel = new JLabel("Country*");
 		lblCountryLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCountryLabel.setBounds(10, 284, 98, 32);
 		panel.add(lblCountryLabel);
@@ -148,17 +148,25 @@ public class LibAuthor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				classAuthor author = new classAuthor();
-
-				classAuthorExe.setValues(author,
-						txtFirstNametextField.getText(),
-						txtLastNametextField.getText(),
-						txtMiddleNametextField.getText(),
-						txtAddresstextField.getText(),
-						txtCitytextField.getText(),
-						txtProvincetextField.getText(),
-						txtCountrytextField.getText());
-				
-				JOptionPane.showMessageDialog(null, classAuthorExe.exeInsertStatements(author));
+				try {
+					if (!txtFirstNametextField.getText().equals("")) {
+						classAuthorExe.setValues(author,
+								txtFirstNametextField.getText(),
+								txtLastNametextField.getText(),
+								txtMiddleNametextField.getText(),
+								txtAddresstextField.getText(),
+								txtCitytextField.getText(),
+								txtProvincetextField.getText(),
+								txtCountrytextField.getText());
+						
+						JOptionPane.showMessageDialog(null, classAuthorExe.exeInsertStatements(author));
+					} else {
+						JOptionPane.showMessageDialog(null, "Input Required Fields");
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));

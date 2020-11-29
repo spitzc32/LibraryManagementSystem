@@ -17,6 +17,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -72,7 +73,7 @@ public class LibMaterial extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblMaterialTitleLabel = new JLabel("Title");
+		JLabel lblMaterialTitleLabel = new JLabel("Title *");
 		lblMaterialTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblMaterialTitleLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblMaterialTitleLabel);
@@ -82,7 +83,7 @@ public class LibMaterial extends JFrame {
 		panel.add(txtMaterialTitletextField);
 		txtMaterialTitletextField.setColumns(10);
 		
-		JLabel lblDescriptionLabel = new JLabel("Description");
+		JLabel lblDescriptionLabel = new JLabel("Description *");
 		lblDescriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblDescriptionLabel.setBounds(10, 75, 98, 32);
 		panel.add(lblDescriptionLabel);
@@ -102,8 +103,8 @@ public class LibMaterial extends JFrame {
 		txtEditiontextField.setBounds(121, 118, 291, 34);
 		panel.add(txtEditiontextField);
 		
-		JLabel lblYearOfPublicationLabel = new JLabel("Year of Publication");
-		lblYearOfPublicationLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblYearOfPublicationLabel = new JLabel("Year of Publication *");
+		lblYearOfPublicationLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblYearOfPublicationLabel.setBounds(10, 166, 148, 32);
 		panel.add(lblYearOfPublicationLabel);
 		
@@ -116,8 +117,8 @@ public class LibMaterial extends JFrame {
 		txtYearOfPublicationtextField.setBounds(168, 166, 243, 34);
 		panel.add(txtYearOfPublicationtextField);
 		
-		JLabel lblDatePublished = new JLabel("Date Published");
-		lblDatePublished.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblDatePublished = new JLabel("Date Published *");
+		lblDatePublished.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDatePublished.setBounds(10, 214, 148, 32);
 		panel.add(lblDatePublished);
 		
@@ -130,15 +131,20 @@ public class LibMaterial extends JFrame {
 		txtDatePublishedtextField.setBounds(168, 214, 243, 34);
 		panel.add(txtDatePublishedtextField);
 		
-		JLabel lblTypeOfMaterialLabel = new JLabel("Type of Material");
-		lblTypeOfMaterialLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblTypeOfMaterialLabel = new JLabel("Type of Material *");
+		lblTypeOfMaterialLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTypeOfMaterialLabel.setBounds(10, 261, 131, 32);
 		panel.add(lblTypeOfMaterialLabel);
 		
-		txtTypeOfMaterialtextField = new JTextField();
-		txtTypeOfMaterialtextField.setColumns(10);
-		txtTypeOfMaterialtextField.setBounds(145, 261, 267, 34);
-		panel.add(txtTypeOfMaterialtextField);
+		JComboBox cmbTypeOfMaterialcomboBox = new JComboBox();
+		cmbTypeOfMaterialcomboBox.setBounds(145, 261, 267, 34);
+		panel.add(cmbTypeOfMaterialcomboBox);
+		
+		cmbTypeOfMaterialcomboBox.addItem("");
+		cmbTypeOfMaterialcomboBox.addItem("Book");
+		cmbTypeOfMaterialcomboBox.addItem("ResearchPaper");
+		cmbTypeOfMaterialcomboBox.addItem("Thesis");
+		cmbTypeOfMaterialcomboBox.addItem("Newspaper");
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 454, 402, 2);
@@ -151,22 +157,26 @@ public class LibMaterial extends JFrame {
 				//Save statement
 				try {
 					classMaterials material = new classMaterials();
-					Date YearOfPublication = new SimpleDateFormat("yyyy").parse(txtYearOfPublicationtextField.getText());
-					java.sql.Date yop = new java.sql.Date(YearOfPublication.getTime());
-					Date DatePublished = new SimpleDateFormat("dd/MM").parse(txtDatePublishedtextField.getText());
-					java.sql.Date dp = new java.sql.Date(DatePublished.getTime());
-					
-					classMaterialsExe.setValues(material,
-							txtMaterialTitletextField.getText(),
-							txtDescriptiontextField.getText(),
-							txtEditiontextField.getText(),
-							yop,
-							dp,
-							txtTypeOfMaterialtextField.getText()
-							);
-					
-					JOptionPane.showMessageDialog(null, classMaterialsExe.exeInsertStatements(material));
-					
+					if (!txtYearOfPublicationtextField.getText().equals("") && !txtDatePublishedtextField.getText().equals("")) {
+						Date YearOfPublication = new SimpleDateFormat("yyyy").parse(txtYearOfPublicationtextField.getText());
+						java.sql.Date yop = new java.sql.Date(YearOfPublication.getTime());
+						Date DatePublished = new SimpleDateFormat("dd/MM").parse(txtDatePublishedtextField.getText());
+						java.sql.Date dp = new java.sql.Date(DatePublished.getTime());
+	
+						
+						classMaterialsExe.setValues(material,
+								txtMaterialTitletextField.getText(),
+								txtDescriptiontextField.getText(),
+								txtEditiontextField.getText(),
+								yop,
+								dp,
+								cmbTypeOfMaterialcomboBox.getSelectedItem().toString()
+								);
+						
+						JOptionPane.showMessageDialog(null, classMaterialsExe.exeInsertStatements(material));
+					} else {
+						JOptionPane.showMessageDialog(null, "Please Fill up all required fields.");
+					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

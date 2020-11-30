@@ -80,7 +80,7 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 		return strfields;
 	}
 
-	public static int funcCreateMaterialsObj (classAssociate_StudentMaterialTracker tracker) {
+	public static int funcCreateAssociate_StudentMaterialTrackerObj (classAssociate_StudentMaterialTracker tracker) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
 		 * instance of the object associate_studentmaterialtracker in MySQL.  
@@ -184,6 +184,65 @@ public class classAssociate_StudentMaterialTrackerCRUD {
 		}  
 		
 		return list;
+	}
+	
+	public static classEntity funcRetrieveDisplayEntityASMTObj (String table, int id) {
+		/* Returns a classEntity of the A retrieve statement 
+		 * Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for the display
+		 * of JTable.
+		 * params:
+		 *  table <type:String>
+		 *  id <type:Strings>
+		 * 
+		 * return value:
+		 * 	entity classEntity
+		 * */
+		classEntity entity = new classEntity();
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT FirstName, MiddleName, LastName FROM " + table + " WHERE id=" + Integer.toString(id));  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				entity.funcsetFirstName(ojbResultSetObject.getString("FirstName"));
+				entity.funcsetMiddleName(ojbResultSetObject.getString("MiddleName"));
+				entity.funcsetLastName(ojbResultSetObject.getString("LastName"));
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return entity;
+	}
+
+	public static classObject funcRetrieveDisplayObjectASMTObj (String table, int id) {
+		/* Returns a classObject of the A retrieve statement 
+		 * Done by MySQL for Foreign Keys (FK). 
+		 * The usual use case of this method is for the display
+		 * of JTable.
+		 * params:
+		 *  table <type:String>
+		 * 
+		 * return value:
+		 * 	list <type:ArrayList<classObject> >
+		 * */
+		classObject obj = new classObject();
+		try {
+			conn =   DbConnection.getConnection();
+			objPreparedStatementObject = conn.prepareStatement("SELECT Title FROM " + table + " WHERE id=" + Integer.toString(id));  
+			ojbResultSetObject = objPreparedStatementObject.executeQuery();
+			
+			while(ojbResultSetObject.next()) {
+				obj.funcsetTitle(ojbResultSetObject.getString("Title"));
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return obj;
 	}
 	
 	public static ArrayList<classAssociate_StudentMaterialTracker> funcReadAssociate_StudentMaterialTrackerObj () {

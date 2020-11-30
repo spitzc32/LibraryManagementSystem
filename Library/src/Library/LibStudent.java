@@ -232,6 +232,16 @@ public class LibStudent extends JFrame {
 		btnDiscardChangesButton.setBounds(29, 468, 158, 32);
 		panel.add(btnDiscardChangesButton);
 		
+		btnDiscardChangesButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 617, 511);
 		contentPane.add(panel_1);

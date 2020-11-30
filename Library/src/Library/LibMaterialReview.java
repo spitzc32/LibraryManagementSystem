@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -17,6 +19,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.DropMode;
 import javax.swing.JComboBox;
 
@@ -109,6 +114,16 @@ public class LibMaterialReview extends JFrame {
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDiscardChanges.setBounds(29, 468, 158, 32);
 		panel.add(btnDiscardChanges);
+		
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
 
 		JComboBox cmbMaterialscomboBox = new JComboBox();
 		cmbMaterialscomboBox.setBounds(118, 31, 291, 34);

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -21,6 +23,8 @@ import javax.swing.JTextPane;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class LibProfessorBookForm extends JFrame {
@@ -200,7 +204,16 @@ public class LibProfessorBookForm extends JFrame {
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDiscardChanges.setBounds(35, 418, 158, 32);
 		panel.add(btnDiscardChanges);
-
+		
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
 
 // title Professor Book Form
 

@@ -195,6 +195,16 @@ public class LibMaterial extends JFrame {
 		btnDiscardChanges.setBounds(29, 468, 158, 32);
 		panel.add(btnDiscardChanges);
 		
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 515, 511);
 		contentPane.add(panel_1);

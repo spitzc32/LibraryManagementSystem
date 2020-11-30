@@ -41,7 +41,7 @@ import javax.swing.JComboBox;
 public class LibMaterialReview extends JFrame {
 
 	private JPanel contentPane;
-	private JTable tblMaterialReviewtable;
+	private JTable tblMaterialReviewstable;
 	private JTextField txtCommenttextField;
 	private JTextField txtTimestamptextField;
 
@@ -197,17 +197,17 @@ public class LibMaterialReview extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
-		tblMaterialReviewtable = new JTable();
-		tblMaterialReviewtable.setFillsViewportHeight(true);
-		tblMaterialReviewtable.setColumnSelectionAllowed(true);
-		tblMaterialReviewtable.setCellSelectionEnabled(true);
-		panel_1.add(tblMaterialReviewtable);
+		tblMaterialReviewstable = new JTable();
+		tblMaterialReviewstable.setFillsViewportHeight(true);
+		tblMaterialReviewstable.setColumnSelectionAllowed(true);
+		tblMaterialReviewstable.setCellSelectionEnabled(true);
+		panel_1.add(tblMaterialReviewstable);
 		
 		String[] arrColumnNames = {"id", "Materials", "Student", "Professor", "Comment", "Timestamp"};
 		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
 		objtableModel.addRow(arrColumnNames);
 		classMaterialReviewsExe.exeReadStatements(objtableModel);
-		tblMaterialReviewtable.setModel(objtableModel);
+		tblMaterialReviewstable.setModel(objtableModel);
 
 		JLabel lblTitleLabel = new JLabel("Material Review");
 		lblTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

@@ -20,10 +20,9 @@ public class classMaterialReviewsExe {
 		comboBox.addItem(new classComboItem("select", 0));
 		
 		for (classEntity entity: entities) {
-			String name = entity.funcgetLastName() + ", " + 
+			comboBox.addItem(new classComboItem( entity.funcgetLastName() + ", " + 
 						  entity.funcgetFirstName() + " " +
-						  entity.funcgetMiddleName();
-			comboBox.addItem(new classComboItem(name, entity.funcgetId()));
+						  entity.funcgetMiddleName(), entity.funcgetId()));
 		}
 	}
 	

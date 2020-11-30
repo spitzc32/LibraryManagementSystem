@@ -81,15 +81,13 @@ public class LibProfessor extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		Choice choice = new Choice();
-		choice.setBounds(287, 385, 125, 20);
-		panel.add(choice);
+		Choice chbxShiftchoiceBox = new Choice();
+		chbxShiftchoiceBox.setBounds(287, 385, 125, 20);
+		panel.add(chbxShiftchoiceBox);
 		
-		choice.addItem("Day");
-		choice.addItem("Noon");
-		choice.addItem("Night");
-		
-		String Shift = choice.getItem(choice.getSelectedIndex());
+		chbxShiftchoiceBox.addItem("Day");
+		chbxShiftchoiceBox.addItem("Noon");
+		chbxShiftchoiceBox.addItem("Night");
 		
 		JCheckBox chckbxisWorkingCheckBox = new JCheckBox("Working");
 		chckbxisWorkingCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -210,8 +208,8 @@ public class LibProfessor extends JFrame {
 				try {
 					boolean boolIsFilled = !txtFirstNametextField.getText().equals("") && !txtLastNametextField.getText().equals("") &&
 							   !txtWebmailtextField.getText().equals("") && !txtDateOfBirthtextField.getText().equals("") &&
-							   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("") &&
-							   !Shift.equals("");
+							   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("") && 
+							   !txtCoursetextField.getText().equals("") && !chbxShiftchoiceBox.getSelectedItem().toString().equals("");
 					
 					if (boolIsFilled) {
 						classProfessor professor = new classProfessor();
@@ -232,7 +230,7 @@ public class LibProfessor extends JFrame {
 								txtProvincetextField.getText(),
 								txtCoursetextField.getText(),
 								isWorking,
-								Shift,
+								chbxShiftchoiceBox.getSelectedItem().toString(),
 								isActive,
 								isResigned);
 						
@@ -245,7 +243,7 @@ public class LibProfessor extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (dd/mm/yyyy)");
 					e1.printStackTrace();
 				}
 			}
@@ -275,7 +273,7 @@ public class LibProfessor extends JFrame {
 		lblShift.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(459, 42, 527, 511);
+		panel_1.setBounds(459, 42, 515, 511);
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		

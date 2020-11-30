@@ -39,7 +39,7 @@ public class LibStudentBookForm extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textField;
+	private JTextField txtAssignedDatetextField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtDateBorrowedtextField;
 	private JTextField txtDateReturnedtextField;
@@ -101,10 +101,10 @@ public class LibStudentBookForm extends JFrame {
 		lblAssignedDateReturnLabel.setBounds(10, 397, 98, 32);
 		panel.add(lblAssignedDateReturnLabel);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(121, 397, 291, 34);
-		panel.add(textField);
+		txtAssignedDatetextField = new JTextField();
+		txtAssignedDatetextField.setColumns(10);
+		txtAssignedDatetextField.setBounds(121, 397, 291, 34);
+		panel.add(txtAssignedDatetextField);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 454, 402, 2);
@@ -189,7 +189,7 @@ public class LibStudentBookForm extends JFrame {
 						Date dateReturned = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
 						java.sql.Date sqldateReturned = new java.sql.Date(dateReturned.getTime());
 						
-						Date assignedDateReturn = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
+						Date assignedDateReturn = new SimpleDateFormat("dd/MM/yyyy").parse(txtAssignedDatetextField.getText());
 						java.sql.Date sqlassignedDateReturn = new java.sql.Date(assignedDateReturn.getTime());
 						
 						
@@ -214,7 +214,7 @@ public class LibStudentBookForm extends JFrame {
 					}
 				}  catch (ParseException e2) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (dd/mm/yyyy)");
 					e2.printStackTrace();
 				}
 			}
@@ -240,8 +240,9 @@ public class LibStudentBookForm extends JFrame {
 
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(459, 42, 527, 511);
+		panel_1.setBounds(459, 42, 515, 511);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
@@ -252,7 +253,7 @@ public class LibStudentBookForm extends JFrame {
 		String[] arrColumnNames = {"id", "Subject", "Librarian", "Student", "Material", "DateBorrowed", "DateReturned", "is Due?", "Returned?", "AssignedDateReturn"};
 		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
 		objtableModel.addRow(arrColumnNames);
-		classStudentExe.exeReadStatements(objtableModel);
+		classStudentBookFormExe.exeReadStatements(objtableModel);
 		table.setModel(objtableModel);
 
 		JLabel lblTitleLabel = new JLabel("Student Book Form");

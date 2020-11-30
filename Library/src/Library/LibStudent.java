@@ -190,7 +190,11 @@ public class LibStudent extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//Save statement
 				try {
-					if (!txtDateOfBirthtextField.getText().equals("")) {
+					boolean boolIsFilled = !txtFirstNametextField.getText().equals("") && !txtLastNametextField.getText().equals("") &&
+							   !txtWebmailtextField.getText().equals("") && !txtDateOfBirthtextField.getText().equals("") &&
+							   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("");
+					
+					if (boolIsFilled) {
 						classStudent student = new classStudent();
 						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
 						java.sql.Date sql = new java.sql.Date(date.getTime());
@@ -219,6 +223,7 @@ public class LibStudent extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e1.printStackTrace();
 				}
 			}

@@ -31,6 +31,7 @@ import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -167,16 +168,21 @@ public class LibStudentBookForm extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				try {
-					if (!txtDateBorrowedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("")) {
-						classAssociate_StudentMaterialTracker student = new classAssociate_StudentMaterialTracker();
-						Object studentId = cmbStudentcomboBox.getSelectedItem();
-						Object subjectId = cmbSubjectcomboBox.getSelectedItem();
-						Object librarianId = cmbLibrariancomboBox.getSelectedItem();
-						Object materialId = cmbMaterialscomboBox.getSelectedItem();
-						
-						int isDue = chckbxisDueCheckBox.isSelected() ? 1 : 0;
-						int isReturned = chckbxisReturnedCheckBox.isSelected() ? 1 : 0;
-						
+					classAssociate_StudentMaterialTracker student = new classAssociate_StudentMaterialTracker();
+					Object studentId = cmbStudentcomboBox.getSelectedItem();
+					Object subjectId = cmbSubjectcomboBox.getSelectedItem();
+					Object librarianId = cmbLibrariancomboBox.getSelectedItem();
+					Object materialId = cmbMaterialscomboBox.getSelectedItem();
+					
+					int isDue = chckbxisDueCheckBox.isSelected() ? 1 : 0;
+					int isReturned = chckbxisReturnedCheckBox.isSelected() ? 1 : 0;
+					
+					boolean boolIsFilled = ((classComboItem)studentId).getValue() > 0 && ((classComboItem)subjectId).getValue() > 0 &&
+							   ((classComboItem)librarianId).getValue() > 0 && ((classComboItem)materialId).getValue() > 0 &&
+							   !txtDateBorrowedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("") && 
+							   !txtDateReturnedtextField.getText().equals("");
+					
+					if (boolIsFilled) {
 						Date dateBorrowed = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateBorrowedtextField.getText());
 						java.sql.Date sqldateBorrowed = new java.sql.Date(dateBorrowed.getTime());
 						
@@ -189,9 +195,9 @@ public class LibStudentBookForm extends JFrame {
 						
 						classStudentBookFormExe.setValues(student,
 								((classComboItem)studentId).getValue(),
-								((classComboItem)studentId).getValue(),
-								((classComboItem)studentId).getValue(),
-								((classComboItem)studentId).getValue(),
+								((classComboItem)subjectId).getValue(),
+								((classComboItem)librarianId).getValue(),
+								((classComboItem)materialId).getValue(),
 								sqldateBorrowed,
 								sqldateReturned,
 								isDue,
@@ -206,8 +212,9 @@ public class LibStudentBookForm extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "Please enter Required Fields");
 					}
-				}  catch (Exception e2) {
+				}  catch (ParseException e2) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e2.printStackTrace();
 				}
 			}

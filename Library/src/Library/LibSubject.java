@@ -107,7 +107,10 @@ public class LibSubject extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				classSubject subject = new classSubject();
-				if (!txtTitle1textField.getText().equals("")) {
+				boolean boolIsFilled = !txtTitle1textField.getText().equals("") && !txtDescriptiontextField.getText().equals("") &&
+						!txtCodetextField.getText().equals("");
+				
+				if (boolIsFilled) {
 					classSubjectExe.setValues(subject,
 							txtTitle1textField.getText(),
 							txtDescriptiontextField.getText(),

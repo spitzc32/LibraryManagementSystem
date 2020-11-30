@@ -6,6 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import executioner.classProfessorBookFormExe;
+import executioner.classStudentExe;
+import general.classComboItem;
+import values.classAssociate_ProfessorMaterialTracker;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,22 +27,21 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextPane;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LibProfessorBookForm extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField txtIdtextField;
-	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtDateBorrowedtextField;
 	private JTextField txtDateReturnedtextField;
+	private JTextField txtAssignedDatetextField;
 
 	/**
 	 * Launch the application.
@@ -69,123 +75,116 @@ public class LibProfessorBookForm extends JFrame {
 // First Panel
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 42, 439, 467);
+		panel.setBounds(10, 53, 439, 456);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-// Id in 
-
-		JLabel lblIdLabel = new JLabel("ID");
-		lblIdLabel.setBounds(10, 31, 98, 32);
-		lblIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		panel.add(lblIdLabel);
-
-		txtIdtextField = new JTextField();
-		txtIdtextField.setBounds(144, 31, 253, 32);
-		panel.add(txtIdtextField);
-		txtIdtextField.setColumns(10);
-
-// Id out
 // Professor id in
 
-		JLabel lblProfessorIdLabel = new JLabel("Professor");
-		lblProfessorIdLabel.setBounds(10, 71, 98, 32);
-		lblProfessorIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblProfessorIdLabel = new JLabel("Professor*");
+		lblProfessorIdLabel.setBounds(10, 10, 98, 32);
+		lblProfessorIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblProfessorIdLabel);
 
 		JComboBox comboBoxProfessorId = new JComboBox();
-		comboBoxProfessorId.setBounds(144, 73, 253, 32);
+		comboBoxProfessorId.setBounds(144, 12, 253, 32);
 		panel.add(comboBoxProfessorId);
+		classProfessorBookFormExe.funcRetrieveEntityVal("professor", comboBoxProfessorId);
 
 // Professor id out
 // Subject id in		
 
-		JLabel lblSubjectIdLabel = new JLabel("Subject");
-		lblSubjectIdLabel.setBounds(10, 111, 98, 32);
-		lblSubjectIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblSubjectIdLabel = new JLabel("Subject*");
+		lblSubjectIdLabel.setBounds(10, 56, 98, 32);
+		lblSubjectIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblSubjectIdLabel);
 
 		JComboBox comboBoxSubjectId = new JComboBox();
-		comboBoxSubjectId.setBounds(144, 114, 253, 32);
+		comboBoxSubjectId.setBounds(144, 58, 253, 32);
 		panel.add(comboBoxSubjectId);
+		classProfessorBookFormExe.funcRetrieveObjectVal("subject", comboBoxSubjectId);
 
 // Subject id out	
 // Librarian id in		
 
-		JLabel lblLibrarianIdLabel = new JLabel("Librarian");
-		lblLibrarianIdLabel.setBounds(10, 151, 98, 32);
-		lblLibrarianIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblLibrarianIdLabel = new JLabel("Librarian*");
+		lblLibrarianIdLabel.setBounds(10, 98, 98, 32);
+		lblLibrarianIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblLibrarianIdLabel);
-
+		
 		JComboBox comboBoxLibrarianId = new JComboBox();
-		comboBoxLibrarianId.setBounds(144, 154, 253, 32);
+		comboBoxLibrarianId.setBounds(144, 100, 253, 32);
 		panel.add(comboBoxLibrarianId);
+		classProfessorBookFormExe.funcRetrieveEntityVal("librarian", comboBoxLibrarianId);
+
 
 // Librarian id out
 // Material id in		
 
-		JLabel lblMaterialIdLabel = new JLabel("Materials");
-		lblMaterialIdLabel.setBounds(10, 193, 98, 32);
-		lblMaterialIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblMaterialIdLabel = new JLabel("Materials*");
+		lblMaterialIdLabel.setBounds(10, 140, 98, 32);
+		lblMaterialIdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblMaterialIdLabel);
 
 		JComboBox comboBoxMaterialId = new JComboBox();
-		comboBoxMaterialId.setBounds(144, 196, 253, 32);
+		comboBoxMaterialId.setBounds(144, 142, 253, 32);
 		panel.add(comboBoxMaterialId);
+		classProfessorBookFormExe.funcRetrieveObjectVal("materials", comboBoxMaterialId);
+
 
 // Material id out
 // dateBorrowed id in		
 
-		JLabel lblDateBorrowed = new JLabel("Date Borrowed");
-		lblDateBorrowed.setBounds(10, 238, 121, 32);
-		lblDateBorrowed.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblDateBorrowed = new JLabel("Date Borrowed*");
+		lblDateBorrowed.setBounds(10, 182, 121, 32);
+		lblDateBorrowed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblDateBorrowed);
 
 		txtDateBorrowedtextField = new JTextField();
-		txtDateBorrowedtextField.setBounds(144, 238, 253, 32);
+		txtDateBorrowedtextField.setBounds(144, 184, 253, 32);
 		txtDateBorrowedtextField.setColumns(10);
 		panel.add(txtDateBorrowedtextField);
 
 // dateBorrowed id out
 // dateReturn id in		
 
-		JLabel lblAssignedDateReturnLabel = new JLabel("Date to Return");
-		lblAssignedDateReturnLabel.setBounds(10, 280, 121, 32);
-		lblAssignedDateReturnLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblAssignedDateReturnLabel = new JLabel("Date Return*");
+		lblAssignedDateReturnLabel.setBounds(10, 224, 121, 32);
+		lblAssignedDateReturnLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblAssignedDateReturnLabel);
 
-		textField = new JTextField();
-		textField.setBounds(144, 280, 253, 32);
-		textField.setColumns(10);
-		panel.add(textField);
+		txtDateReturnedtextField = new JTextField();
+		txtDateReturnedtextField.setBounds(144, 226, 253, 32);
+		txtDateReturnedtextField.setColumns(10);
+		panel.add(txtDateReturnedtextField);
 
 // dateReturn id out
 // Checkbox isDue and isReturned in
 
-		JCheckBox chckbxisGraduatedCheckBox = new JCheckBox("Due");
-		chckbxisGraduatedCheckBox.setBounds(56, 318, 121, 32);
-		buttonGroup.add(chckbxisGraduatedCheckBox);
-		chckbxisGraduatedCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel.add(chckbxisGraduatedCheckBox);
+		JCheckBox chckbxisDueCheckBox = new JCheckBox("Is this form Due?");
+		chckbxisDueCheckBox.setBounds(10, 263, 203, 32);
+		buttonGroup.add(chckbxisDueCheckBox);
+		chckbxisDueCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel.add(chckbxisDueCheckBox);
 
-		JCheckBox chckbxisEnrolledCheckBox = new JCheckBox("Returned");
-		chckbxisEnrolledCheckBox.setBounds(200, 318, 121, 32);
-		buttonGroup.add(chckbxisEnrolledCheckBox);
-		chckbxisEnrolledCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel.add(chckbxisEnrolledCheckBox);
+		JCheckBox chckbxisReturnedCheckBox = new JCheckBox("Is the Material Returned?");
+		chckbxisReturnedCheckBox.setBounds(10, 307, 203, 32);
+		buttonGroup.add(chckbxisReturnedCheckBox);
+		chckbxisReturnedCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel.add(chckbxisReturnedCheckBox);
 
 // Checkbox isDue and isReturned out
 // DateReturned in
 
-		JLabel lblDateReturned = new JLabel("Date Returned");
+		JLabel lblDateReturned = new JLabel("Assigned Date*");
 		lblDateReturned.setBounds(10, 356, 121, 32);
-		lblDateReturned.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblDateReturned.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblDateReturned);
 
-		txtDateReturnedtextField = new JTextField();
-		txtDateReturnedtextField.setBounds(144, 356, 253, 32);
-		txtDateReturnedtextField.setColumns(10);
-		panel.add(txtDateReturnedtextField);
+		txtAssignedDatetextField = new JTextField();
+		txtAssignedDatetextField.setBounds(144, 356, 253, 32);
+		txtAssignedDatetextField.setColumns(10);
+		panel.add(txtAssignedDatetextField);
 
 // DateReturned Out
 
@@ -196,6 +195,62 @@ public class LibProfessorBookForm extends JFrame {
 // Checkbox Save Entry and Discard Changes in
 
 		JButton btnNewButton = new JButton("Save Entry");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					classAssociate_ProfessorMaterialTracker professor = new classAssociate_ProfessorMaterialTracker();
+					Object professorId = comboBoxProfessorId.getSelectedItem();
+					Object subjectId = comboBoxSubjectId.getSelectedItem();
+					Object librarianId = comboBoxLibrarianId.getSelectedItem();
+					Object materialId = comboBoxMaterialId.getSelectedItem();
+					
+					int isDue = chckbxisDueCheckBox.isSelected() ? 1 : 0;
+					int isReturned = chckbxisReturnedCheckBox.isSelected() ? 1 : 0;
+					
+					boolean boolIsFilled = ((classComboItem)professorId).getValue() > 0 && ((classComboItem)subjectId).getValue() > 0 &&
+							   ((classComboItem)librarianId).getValue() > 0 && ((classComboItem)materialId).getValue() > 0 &&
+							   !txtDateBorrowedtextField.getText().equals("") && !txtDateReturnedtextField.getText().equals("") && 
+							   !txtDateReturnedtextField.getText().equals("");
+					
+					if (boolIsFilled) {
+						Date dateBorrowed = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateBorrowedtextField.getText());
+						java.sql.Date sqldateBorrowed = new java.sql.Date(dateBorrowed.getTime());
+						
+						Date dateReturned = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
+						java.sql.Date sqldateReturned = new java.sql.Date(dateReturned.getTime());
+						
+						Date assignedDateReturn = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateReturnedtextField.getText());
+						java.sql.Date sqlassignedDateReturn = new java.sql.Date(assignedDateReturn.getTime());
+						
+						
+						classProfessorBookFormExe.setValues(professor,
+								((classComboItem)professorId).getValue(),
+								((classComboItem)subjectId).getValue(),
+								((classComboItem)librarianId).getValue(),
+								((classComboItem)materialId).getValue(),
+								sqldateBorrowed,
+								sqldateReturned,
+								isDue,
+								isReturned,
+								sqlassignedDateReturn
+								);
+						
+						JOptionPane.showMessageDialog(null, classProfessorBookFormExe.exeInsertStatements(professor));
+						setVisible(false);
+						LibHome frame = new LibHome();
+						frame.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null, "Please enter Required Fields");
+					}
+				}  catch (ParseException e2) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
+					e2.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(225, 418, 158, 32);
 		panel.add(btnNewButton);
@@ -235,6 +290,13 @@ public class LibProfessorBookForm extends JFrame {
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		panel_1.add(table);
+		
+		String[] arrColumnNames = {"id", "Subject", "Librarian", "Professor", "Material", "DateBorrowed", "DateReturned", "is Due?", "Returned?", "AssignedDateReturn"};
+		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
+		objtableModel.addRow(arrColumnNames);
+		classStudentExe.exeReadStatements(objtableModel);
+		table.setModel(objtableModel);
+
 	}
 
 }

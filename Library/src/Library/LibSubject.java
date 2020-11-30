@@ -131,6 +131,16 @@ public class LibSubject extends JFrame {
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDiscardChanges.setBounds(28, 191, 158, 32);
 		panel.add(btnDiscardChanges);
+		
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
 	
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(459, 42, 527, 262);

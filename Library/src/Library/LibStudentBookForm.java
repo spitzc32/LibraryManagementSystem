@@ -220,6 +220,16 @@ public class LibStudentBookForm extends JFrame {
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDiscardChanges.setBounds(29, 468, 158, 32);
 		panel.add(btnDiscardChanges);
+		
+		btnDiscardChanges.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
+			}
+		});
 
 
 		JPanel panel_1 = new JPanel();

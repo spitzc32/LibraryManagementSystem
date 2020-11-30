@@ -251,6 +251,10 @@ public class LibLibrarian extends JFrame {
 		btnDiscardChanges.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Sucessfully Discarded Changes.");
+				LibHome objLib = new LibHome();
+				objLib.setVisible(true);
 			}
 		});
 		btnDiscardChanges.setFont(new Font("Tahoma", Font.PLAIN, 16));

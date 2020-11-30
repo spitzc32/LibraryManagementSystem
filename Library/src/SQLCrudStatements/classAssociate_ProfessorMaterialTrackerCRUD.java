@@ -79,7 +79,7 @@ public class classAssociate_ProfessorMaterialTrackerCRUD {
 		return strfields;
 	}
 
-	public static int funcCreateMaterialsObj (classAssociate_ProfessorMaterialTracker tracker) {
+	public static int funcCreateAssociate_ProfessorMaterialTrackerObj (classAssociate_ProfessorMaterialTracker tracker) {
 		/* Returns the Status of the INSERT statement
 		 * Done by MySQL. This is for creating a new 
 		 * instance of the object associate_professormaterialtracker in MySQL.  

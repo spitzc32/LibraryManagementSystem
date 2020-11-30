@@ -156,8 +156,12 @@ public class LibMaterial extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//Save statement
 				try {
+					boolean boolIsFilled = !txtMaterialTitletextField.getText().equals("") && !txtDatePublishedtextField.getText().equals("") &&
+							   !txtYearOfPublicationtextField.getText().equals("") && !txtDescriptiontextField.getText().equals("") &&
+							   !cmbTypeOfMaterialcomboBox.getSelectedItem().toString().equals("");
+					
 					classMaterials material = new classMaterials();
-					if (!txtYearOfPublicationtextField.getText().equals("") && !txtDatePublishedtextField.getText().equals("")) {
+					if (boolIsFilled) {
 						Date YearOfPublication = new SimpleDateFormat("yyyy").parse(txtYearOfPublicationtextField.getText());
 						java.sql.Date yop = new java.sql.Date(YearOfPublication.getTime());
 						Date DatePublished = new SimpleDateFormat("dd/MM").parse(txtDatePublishedtextField.getText());
@@ -182,6 +186,7 @@ public class LibMaterial extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e1.printStackTrace();
 				}
 			}

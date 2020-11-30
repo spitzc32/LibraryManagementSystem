@@ -148,8 +148,11 @@ public class LibAuthor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				classAuthor author = new classAuthor();
+				boolean boolIsFilled = !txtFirstNametextField.getText().equals("") && !txtLastNametextField.getText().equals("") &&
+									   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("") &&
+									   !txtCountrytextField.getText().equals("");
 				try {
-					if (!txtFirstNametextField.getText().equals("")) {
+					if (boolIsFilled) {
 						classAuthorExe.setValues(author,
 								txtFirstNametextField.getText(),
 								txtLastNametextField.getText(),

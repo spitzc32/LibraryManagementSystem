@@ -79,7 +79,7 @@ public class LibLibrarian extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblFirstNameLabel = new JLabel("First Name");
+		JLabel lblFirstNameLabel = new JLabel("First Name*");
 		lblFirstNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFirstNameLabel.setBounds(10, 29, 98, 32);
 		panel.add(lblFirstNameLabel);
@@ -89,7 +89,7 @@ public class LibLibrarian extends JFrame {
 		panel.add(txtFirstNametextField);
 		txtFirstNametextField.setColumns(10);
 		
-		JLabel lblLastNameLabel = new JLabel("Last Name");
+		JLabel lblLastNameLabel = new JLabel("Last Name*");
 		lblLastNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblLastNameLabel.setBounds(10, 71, 98, 32);
 		panel.add(lblLastNameLabel);
@@ -109,7 +109,7 @@ public class LibLibrarian extends JFrame {
 		txtMiddleNametextField.setBounds(121, 111, 291, 34);
 		panel.add(txtMiddleNametextField);
 		
-		JLabel lblWebmailLabel = new JLabel("Webmail");
+		JLabel lblWebmailLabel = new JLabel("Webmail*");
 		lblWebmailLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblWebmailLabel.setBounds(10, 157, 98, 32);
 		panel.add(lblWebmailLabel);
@@ -119,7 +119,7 @@ public class LibLibrarian extends JFrame {
 		txtWebmailtextField.setBounds(121, 155, 291, 34);
 		panel.add(txtWebmailtextField);
 		
-		JLabel lblDateOfBirthLabel = new JLabel("Date Of Birth");
+		JLabel lblDateOfBirthLabel = new JLabel("Date Of Birth*");
 		lblDateOfBirthLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDateOfBirthLabel.setBounds(10, 201, 98, 32);
 		panel.add(lblDateOfBirthLabel);
@@ -129,7 +129,7 @@ public class LibLibrarian extends JFrame {
 		txtDateOfBirthtextField.setBounds(121, 199, 291, 34);
 		panel.add(txtDateOfBirthtextField);
 		
-		JLabel lblAddressLabel = new JLabel("Address");
+		JLabel lblAddressLabel = new JLabel("Address*");
 		lblAddressLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblAddressLabel.setBounds(10, 243, 98, 32);
 		panel.add(lblAddressLabel);
@@ -139,7 +139,7 @@ public class LibLibrarian extends JFrame {
 		txtAddresstextField.setBounds(121, 243, 291, 34);
 		panel.add(txtAddresstextField);
 		
-		JLabel lblCityLabel = new JLabel("City");
+		JLabel lblCityLabel = new JLabel("City*");
 		lblCityLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCityLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCityLabel.setBounds(30, 285, 98, 32);
@@ -207,7 +207,12 @@ public class LibLibrarian extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//Save statement
 				try {
-					if (!txtDateOfBirthtextField.getText().equals("")) {
+					boolean boolIsFilled = !txtFirstNametextField.getText().equals("") && !txtLastNametextField.getText().equals("") &&
+							   !txtWebmailtextField.getText().equals("") && (!txtDateOfBirthtextField.getText().equals("")) &&
+							   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("") &&
+							   !lblShiftChoice.getItem(lblShiftChoice.getSelectedIndex()).equals("");
+					
+					if (boolIsFilled) {
 						classLibrarian librarian = new classLibrarian();
 						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
 						java.sql.Date sql = new java.sql.Date(date.getTime());
@@ -239,6 +244,7 @@ public class LibLibrarian extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e1.printStackTrace();
 				}
 			}

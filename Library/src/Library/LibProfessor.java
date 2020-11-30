@@ -208,7 +208,12 @@ public class LibProfessor extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					if (!txtDateOfBirthtextField.getText().equals("")) {
+					boolean boolIsFilled = !txtFirstNametextField.getText().equals("") && !txtLastNametextField.getText().equals("") &&
+							   !txtWebmailtextField.getText().equals("") && !txtDateOfBirthtextField.getText().equals("") &&
+							   !txtAddresstextField.getText().equals("") &&  !txtCitytextField.getText().equals("") &&
+							   !Shift.equals("");
+					
+					if (boolIsFilled) {
 						classProfessor professor = new classProfessor();
 						Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txtDateOfBirthtextField.getText());
 						java.sql.Date sql = new java.sql.Date(date.getTime());
@@ -240,6 +245,7 @@ public class LibProfessor extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e1.printStackTrace();
 				}
 			}

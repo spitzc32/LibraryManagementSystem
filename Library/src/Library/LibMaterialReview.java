@@ -168,7 +168,7 @@ public class LibMaterialReview extends JFrame {
 					}
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Please Format Date this way. (dd/mm/yyyy)");
+					JOptionPane.showMessageDialog(null, "Please Format Date this way. (mm/dd/yyyy)");
 					e1.printStackTrace();
 				}
 			}

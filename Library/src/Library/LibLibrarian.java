@@ -272,6 +272,7 @@ public class LibLibrarian extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(460, 42, 527, 535);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);

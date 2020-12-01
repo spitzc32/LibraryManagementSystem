@@ -37,7 +37,7 @@ CREATE TABLE `librarian` (
   `isActive` tinyint DEFAULT NULL,
   `isResigned` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `librarian` (
 
 LOCK TABLES `librarian` WRITE;
 /*!40000 ALTER TABLE `librarian` DISABLE KEYS */;
-INSERT INTO `librarian` VALUES (1,'library','lirbrarian','birr','library@librarian','2000-09-09','gelo','gelo','gelo',1,'night',1,0);
+INSERT INTO `librarian` VALUES (1,'Neilos','Ansehelm','Minami','nmansehelm@librarian.ph','1975-05-12','12 Azucena','Malabon','Metro Manila',1,'day',1,0),(2,'Azucena	','Tullus','Takeuchi','mttullus@librarian.ph','1971-06-03','754 Greenbelt','Makati','Metro Manila',1,'Day',1,0),(3,'Yaeko','Dudda','Ueda','yududda@librarian.ph','1987-05-08','742 Legaspi Vil','Makati','Metro Manila',1,'Day',1,0),(4,'Gorou','Honoria','Ito','gihonoria@librarian.ph','1991-08-10','451 Parkway','Quezon City','Metro Manila',1,'Noon',1,0),(5,'Maeve','Hilaria','Fukui','mfhilaria@librarian.ph','1986-06-01','69 Royal Bay','Manila','Metro Manila',0,'Noon',0,1),(6,'Lamber','Fedelmid','Morimoto','lmfedelmid@librarian.ph','1978-08-04','163 Araneta','Quezon City','Metro Manila',1,'Noon',1,0),(7,'Drakon','Alfarr','Iwata','dialfarr@librarian.ph','1985-01-03','926 General Luna','Manila','Metro Manila',1,'Night',1,0),(8,'Kleio','Brigid','Brigid','ksbrigid@librarian.ph','1986-11-09','124 Ermita','Manila','Metro Manila',1,'Night',1,0),(9,'Rufus','Aimi','Rambio','rraimi@librarian.ph','1981-11-06','128 Esguerra','Quezon City','Metro Manila',1,'Night',1,0),(10,'Shani','Cepheus','Hamasaki','shcephus@librarian.ph','1981-04-12','95 UN Avenue','Manila','Metro Manila',0,'Day',0,1);
 /*!40000 ALTER TABLE `librarian` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:34
+-- Dump completed on 2020-12-01 11:11:18

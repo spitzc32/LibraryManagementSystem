@@ -32,7 +32,7 @@ CREATE TABLE `author` (
   `Province` varchar(15) DEFAULT NULL,
   `Country` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `author` (
 
 LOCK TABLES `author` WRITE;
 /*!40000 ALTER TABLE `author` DISABLE KEYS */;
+INSERT INTO `author` VALUES (1,'Vera','Williams','','Fresno','California','','US'),(2,'Jamie','Mcguire','','Tulsa','Tulsa','','US'),(3,'Katherine','Addison','','Oak Ridge','Tennessee','','US'),(4,'C.J.','Cherryh','R','St. Louis','Missouri','','US'),(5,'Arthur','Connan','Doyle','Leith','Edinburgh','','Scotland'),(6,'Cherie','Priest','','Tampa','Florida','','US'),(7,'Dorothy','Sayers','','Oxford','England','','UK'),(8,'Peter','Beagle','','Queens','New York','','US'),(9,'Kiley','Reid','','Los Angeles','California','','US'),(10,'Colleen','Hoover','','Spring','Texas','','US');
 /*!40000 ALTER TABLE `author` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:33
+-- Dump completed on 2020-12-01 11:11:17

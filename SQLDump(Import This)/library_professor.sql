@@ -38,7 +38,7 @@ CREATE TABLE `professor` (
   `isActive` tinyint NOT NULL,
   `isResigned` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'yororor','royoyo','yoro','yoro@yoro','2000-09-09','idk XD','wre','wre','wre','night',1,1,0);
+INSERT INTO `professor` VALUES (1,'Sokrates','Cynebald','Hayashi','shcynebald@pup.edu.ph','1984-11-24','11 Ortigas ave','Pasig City','Metro Manila','BSCS','Day',1,1,0),(2,'Yuuna','Aoki','Owain','yoaoki@pup.edu.ph','1991-06-10','12 Gilmore','Quezon City','Metro Manila','BSCS','Day',1,1,0),(3,'Cassandra','Goteleib','Miyamoto','cmgoteleib@pup.edu.ph','1979-12-01','65 Legaspi Vil','Manila','Metro Manila','BSCS','Day',0,0,1),(4,'Tatiana','Theodoros','Nakano','tntheodoros@pup.edu.ph','1970-06-07','56 Novaliches','Quezon City','Metro Manila','BSCS','Noon',1,1,0),(5,'Brunhild','Yoshino','Honda','bhyoshino@pup.edu.ph','1954-12-05','943 Recto','Manila','Metro Manila','BSCS','Noon',1,1,0),(6,'Morotheus','Haruna','Hildr','dhharuna@pup.edu.ph','1986-11-03','512 Balubaran','Malinta','Valenzuela','BSIT','Noon',1,1,0),(7,'Ixos','Unnr','Himura','ihunnr@pup.edu.ph','1992-06-04','825 Sta. Crus','Manila','Metro Manila','BSIT','Night',0,1,0),(8,'Aglaea','Kamala','Kubo','akkamala@pup.edu.ph','1979-01-05','173 Francis Square','Pasig','Metro Manila','BSIT','Night',1,1,0),(9,'Myrrhine','Aetius','Kuroda','mkaetius@pup.edu.ph','1989-02-03','314  Loakan Rd. ','Baguio','Benguet','BSIT','Night',1,1,0),(10,'Eusebuis','Yasuda','Rokuro','eryasuda@pup.edu.ph','1987-02-04','862 Aurora','Quezon City','Metro Manila','BSIT','Day',0,0,1);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:33
+-- Dump completed on 2020-12-01 11:11:18

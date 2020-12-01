@@ -33,7 +33,7 @@ CREATE TABLE `associate_materialsubject` (
   KEY `AMSsubjectId_idx` (`SubjectId`),
   CONSTRAINT `AMSmaterialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`),
   CONSTRAINT `AMSsubjectId` FOREIGN KEY (`SubjectId`) REFERENCES `subject` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `associate_materialsubject` (
 
 LOCK TABLES `associate_materialsubject` WRITE;
 /*!40000 ALTER TABLE `associate_materialsubject` DISABLE KEYS */;
+INSERT INTO `associate_materialsubject` VALUES (1,1,7),(2,2,6),(3,3,8),(4,4,10),(5,5,1),(6,6,1),(7,7,4),(8,8,5),(9,9,2),(10,10,3);
 /*!40000 ALTER TABLE `associate_materialsubject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:33
+-- Dump completed on 2020-12-01 11:11:18

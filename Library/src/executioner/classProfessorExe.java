@@ -23,7 +23,7 @@ public class classProfessorExe {
 		prof.funcsetIsWorking(isWorking);
 		prof.funcsetShift(shift);
 		prof.funcsetIsActive(isActive);
-		prof.funcsetIsActive(isResigned);
+		prof.funcsetIsResigned(isResigned);
 	}
 	
 	public static String exeInsertStatements (classProfessor prof) {

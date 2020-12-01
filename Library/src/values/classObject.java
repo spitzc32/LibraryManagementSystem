@@ -10,9 +10,9 @@ package values;
  * */
 
 public class classObject {
-	private  int intId;
+	private int intId;
 	
-	private static String strTitle;
+	private String strTitle;
 	
 	public int funcgetId () {
 		return intId;

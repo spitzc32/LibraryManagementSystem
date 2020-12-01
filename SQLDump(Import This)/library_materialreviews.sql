@@ -32,7 +32,7 @@ CREATE TABLE `materialreviews` (
   PRIMARY KEY (`id`),
   KEY `MRmaterialId_idx` (`MaterialId`),
   CONSTRAINT `MRmaterialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `materialreviews` (
 
 LOCK TABLES `materialreviews` WRITE;
 /*!40000 ALTER TABLE `materialreviews` DISABLE KEYS */;
+INSERT INTO `materialreviews` VALUES (1,1,1,1,'Emotional yet embracing','2020-12-11 16:00:00'),(2,10,5,2,'Too technical yet understandable','2020-11-24 16:00:00'),(3,8,4,4,'Trojan in a nutshell','2021-11-10 16:00:00'),(4,7,8,5,'Im persueded','2021-06-10 16:00:00'),(5,7,4,6,'Too confusing ','2020-05-10 16:00:00'),(6,3,9,8,'Im at one yet the other','2020-01-10 16:00:00'),(7,5,6,8,'Im infected','2021-11-09 16:00:00'),(8,9,7,9,'Nice work','2021-05-09 16:00:00'),(9,1,10,10,'Free stuff, nice.','2020-09-09 16:00:00'),(10,4,3,3,'Adventurous but deep','2021-08-08 16:00:00');
 /*!40000 ALTER TABLE `materialreviews` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:34
+-- Dump completed on 2020-12-01 11:11:18

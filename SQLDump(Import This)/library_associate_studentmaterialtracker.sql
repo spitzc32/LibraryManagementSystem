@@ -42,7 +42,7 @@ CREATE TABLE `associate_studentmaterialtracker` (
   CONSTRAINT `ASMMaterialId` FOREIGN KEY (`MaterialId`) REFERENCES `materials` (`id`),
   CONSTRAINT `ASMstudentId` FOREIGN KEY (`studentId`) REFERENCES `student` (`id`),
   CONSTRAINT `ASMsubjectId` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `associate_studentmaterialtracker` (
 
 LOCK TABLES `associate_studentmaterialtracker` WRITE;
 /*!40000 ALTER TABLE `associate_studentmaterialtracker` DISABLE KEYS */;
-INSERT INTO `associate_studentmaterialtracker` VALUES (5,1,1,1,1,'2020-02-02','2020-02-02',0,0,'2020-02-02');
+INSERT INTO `associate_studentmaterialtracker` VALUES (1,1,1,1,1,'2020-12-12','2020-12-15',0,1,'2020-12-19'),(2,5,3,2,10,'2020-11-25','2020-11-25',0,1,'2020-12-01'),(3,4,4,3,8,'2020-11-23','2020-11-25',0,1,'2020-12-01'),(4,8,1,4,6,'2020-11-18','2021-11-24',0,1,'2020-11-25'),(5,4,1,6,6,'2020-11-05','2020-11-05',0,1,'2020-11-12'),(6,9,8,7,3,'2020-11-01','2020-11-13',1,0,'2020-11-09'),(7,6,1,8,5,'2020-10-23','2021-11-11',1,0,'2022-10-30'),(8,6,2,9,9,'2020-10-17','2022-10-19',0,1,'2021-10-24'),(9,10,7,7,1,'2020-10-09','2020-10-10',0,1,'2021-10-16'),(10,3,10,10,4,'2020-09-20','2021-09-20',0,1,'2022-09-27');
 /*!40000 ALTER TABLE `associate_studentmaterialtracker` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 16:12:34
+-- Dump completed on 2020-12-01 11:11:18

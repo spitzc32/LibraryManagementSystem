@@ -23,21 +23,21 @@ import java.sql.Date;
 * */
 
 public class classLibrarian {
-	private static int intId, 
-						intIsWorking, 
-						intIsActive,
-						intIsResigned;
+	private int intId, 
+				intIsWorking, 
+				intIsActive,
+				intIsResigned;
 
-	private static String strFirstName, 
-						  strLastName, 
-						  strMiddleName,
-						  strWebmail,
-						  strAddress,
-						  strCity,
-						  strProvince,
-						  strShift;
+	private String strFirstName, 
+				  strLastName, 
+				  strMiddleName,
+				  strWebmail,
+				  strAddress,
+				  strCity,
+				  strProvince,
+				  strShift;
 
-	private static Date dateDateOfBirth;
+	private Date dateDateOfBirth;
 	
 	public int funcgetId () {
 		return intId;

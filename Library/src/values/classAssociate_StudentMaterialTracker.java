@@ -20,17 +20,17 @@ import java.sql.Date;
  * */
 
 public class classAssociate_StudentMaterialTracker {
-	private static int intId, 
-					   intStudentId, 
-					   intSubjectId,
-					   intLibririanId,
-					   intMaterialId,
-					   intIsDue,
-					   intIsReturned;
+	private int intId, 
+			   intStudentId, 
+			   intSubjectId,
+			   intLibririanId,
+			   intMaterialId,
+			   intIsDue,
+			   intIsReturned;
 	
-	private static Date dateDateBorrowed,
-						dateDateReturned,
-						dateAssignedDateReturn;
+	private Date dateDateBorrowed,
+				dateDateReturned,
+				dateAssignedDateReturn;
 	
 	
 	public int funcgetId () {

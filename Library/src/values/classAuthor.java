@@ -16,15 +16,15 @@ package values;
 * */
 
 public class classAuthor {
-	private static int intId;
+	private int intId;
 	
-	private static String strFirstName, 
-					      strLastName, 
-					      strMiddleName,
-					      strAddress,
-					      strCity,
-					      strProvince,
-					      strCountry;
+	private String strFirstName, 
+			      strLastName, 
+			      strMiddleName,
+			      strAddress,
+			      strCity,
+			      strProvince,
+			      strCountry;
 	
 	public int funcgetId () {
 		return intId;

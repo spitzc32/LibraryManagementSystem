@@ -10,7 +10,7 @@ package values;
  * */
 
 public class classObject {
-	private int intId;
+	private  int intId;
 	
 	private String strTitle;
 	

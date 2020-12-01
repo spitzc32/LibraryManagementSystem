@@ -25,22 +25,22 @@ import java.sql.Date;
 
 
 public class classProfessor {
-	private static int intId, 
-						intIsWorking, 
-						intIsActive,
-						intIsResigned;
+	private int intId, 
+				intIsWorking, 
+				intIsActive,
+				intIsResigned;
 
-	private static String strFirstName, 
-						  strLastName, 
-						  strMiddleName,
-						  strWebmail,
-						  strAddress,
-						  strCity,
-						  strProvince,
-						  strCourse,
-						  strShift;
+	private String strFirstName, 
+				  strLastName, 
+				  strMiddleName,
+				  strWebmail,
+				  strAddress,
+				  strCity,
+				  strProvince,
+				  strCourse,
+				  strShift;
 
-	private static Date dateDateOfBirth;	
+	private Date dateDateOfBirth;	
 	
 	public int funcgetId () {
 		return intId;

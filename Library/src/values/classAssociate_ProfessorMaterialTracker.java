@@ -20,7 +20,7 @@ import java.sql.Date;
  * */
 
 public class classAssociate_ProfessorMaterialTracker {
-	private static int intId, 
+	private int intId, 
 					   intProfessorId, 
 					   intSubjectId,
 					   intLibririanId,
@@ -28,7 +28,7 @@ public class classAssociate_ProfessorMaterialTracker {
 					   intIsDue,
 					   intIsReturned;
 
-	private static Date dateDateBorrowed,
+	private Date dateDateBorrowed,
 						dateDateReturned,
 						dateAssignedDateReturn;
 	

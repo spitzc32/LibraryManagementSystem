@@ -11,9 +11,9 @@ package values;
 * */
 
 public class classSubject {
-	private static int intId;
+	private int intId;
 	
-	private static String strTitle, 
+	private String strTitle, 
 						  strDescription, 
 					      strCode;
 	

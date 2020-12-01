@@ -4,14 +4,14 @@ package values;
 import java.sql.Date;
 
 public class classMaterialReviews {
-	private static int intId, 
+	private int intId, 
 					   intMaterialId, 
 					   intStudentId,
 					   intProfessorId;
 	
-	private static String strComment;
+	private String strComment;
 	
-	private static Date dateTimestamp;
+	private Date dateTimestamp;
 	
 	public int funcgetId () {
 		return intId;

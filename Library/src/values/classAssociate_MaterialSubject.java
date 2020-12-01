@@ -1,9 +1,9 @@
 package values;
 
 public class classAssociate_MaterialSubject {
-	private static int intId, 
-	   				   intMaterialId, 
-	   				   intSubjectId;
+	private int intId, 
+	   		    intMaterialId, 
+	   			intSubjectId;
 	
 	public int funcgetId () {
 		return intId;

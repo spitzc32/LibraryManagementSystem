@@ -16,15 +16,15 @@ import java.sql.Date;
 * */
 
 public class classMaterials {
-	private static int intId;
+	private int intId;
 	
-	private static String strTitle, 
-						  strDescription, 
-						  strEdition,
-						  strTypeOfMaterial;
+	private String strTitle, 
+				  strDescription, 
+				  strEdition,
+				  strTypeOfMaterial;
 	
-	private static Date dateYearOfPublication,
-						dateDatePublished;
+	private Date dateYearOfPublication,
+				dateDatePublished;
 	
 	public int funcgetId () {
 		return intId;

@@ -75,7 +75,7 @@ public class LibProfessorBookForm extends JFrame {
 // First Panel
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 53, 439, 456);
+		panel.setBounds(10, 42, 439, 467);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -282,8 +282,9 @@ public class LibProfessorBookForm extends JFrame {
 // Second Panel
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(475, 42, 439, 467);
+		panel_1.setBounds(459, 42, 455, 467);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
@@ -294,7 +295,7 @@ public class LibProfessorBookForm extends JFrame {
 		String[] arrColumnNames = {"id", "Subject", "Librarian", "Professor", "Material", "DateBorrowed", "DateReturned", "is Due?", "Returned?", "AssignedDateReturn"};
 		DefaultTableModel objtableModel = new DefaultTableModel(arrColumnNames, 0);
 		objtableModel.addRow(arrColumnNames);
-		classStudentExe.exeReadStatements(objtableModel);
+		classProfessorBookFormExe.exeReadStatements(objtableModel);
 		table.setModel(objtableModel);
 
 	}
